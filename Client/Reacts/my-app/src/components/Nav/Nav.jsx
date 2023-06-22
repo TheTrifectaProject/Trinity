@@ -2,6 +2,7 @@ import react from 'react'
 import styled from "styled-components"
 import {useState} from 'react'
 
+//update
 
 //GIT BRANCH UPDATE
 const SearchButton = styled.button`
@@ -68,11 +69,6 @@ const Nav = () => {
 }
 
 
-const StyledNav = styled(Nav)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
 
 
 export default StyledNav
