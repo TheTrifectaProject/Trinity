@@ -2,6 +2,8 @@ import react from 'react'
 import styled from "styled-components"
 import {useState} from 'react'
 
+
+//GIT BRANCH UPDATE 
 const SearchButton = styled.button`
 background-color: lightblue;
 border: none;
