@@ -2,9 +2,6 @@ import react from 'react'
 import styled from "styled-components"
 import {useState} from 'react'
 
-//update
-
-//GIT BRANCH UPDATE
 const SearchButton = styled.button`
 background-color: lightblue;
 border: none;
@@ -71,4 +68,4 @@ const Nav = () => {
 
 
 
-export default StyledNav
+export default Nav
