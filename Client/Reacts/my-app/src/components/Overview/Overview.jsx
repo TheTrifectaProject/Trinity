@@ -77,6 +77,7 @@ const Overview = () => {
         <h2>Product Description / Slogan</h2>
         <p>Description</p>
       </BottomDIV>
+
     </OverviewDIV>
   )
 }
