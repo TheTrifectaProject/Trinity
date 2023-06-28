@@ -6,7 +6,7 @@ flex-direction:row;
 justify-content: space-between;
 justify-self: center;
 height: 80px;
-width: 70%;
+width: 100%;
 position: relative;
 border-radius: 10px;
 background-color: whitesmoke;
