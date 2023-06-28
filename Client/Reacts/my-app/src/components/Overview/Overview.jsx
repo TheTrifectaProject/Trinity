@@ -40,25 +40,9 @@ const Overview = ({currentProductId}) => {
   const [currentStyle, setcurrentStyle] = useState('');
   const [photos, setPhotos] = useState('');
   const [mainPhoto, setmainPhoto] = useState('');
+  const [photoIndex, setphotoIndex] = useState(0)
 
   let token = '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';
-
-//40344
-    // const fetchProducts = () => {
-    //   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-    //   const endpoint = `/products`;
-    //   const url = baseURL + endpoint;
-    //   const headers = {
-    //     Authorization: token,
-    //   };
-
-    //   return axios.get(url, { headers })
-    //     .then((response) => console.log('fetchProducts', response.data))
-    //     .catch((error) => {
-    //       console.error(error.response.data);
-    //       throw error;
-    //     });
-    // };
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
@@ -93,7 +77,7 @@ const Overview = ({currentProductId}) => {
           setStyles(response.data.results);
           setcurrentStyle(response.data.results[0]);
           setPhotos(response.data.results[0].photos)
-          setmainPhoto(response.data.results[0].photos[0])
+          setmainPhoto(response.data.results[0].photos[photoIndex])
         })
         .catch((error) => {
           console.error(error.response);
@@ -101,29 +85,24 @@ const Overview = ({currentProductId}) => {
         });
     };
 
-    const setcStyle = () => {
-      setcurrentStyle(styles.filter((style) => {
-        return style['default?'] === true;
-      }))
-    }
-
   useEffect(() => {
 
     fetchProduct(currentProductId);
     fetchStyles(currentProductId);
 
-  }, []);
+  }, [currentProductId]);
 
-  const updateMainPhoto = (photo) => {
+  const updateMainPhoto = (photo, index) => {
     setmainPhoto(photo);
+    setphotoIndex(index);
   }
 
   return (
     <OverviewDIV>
 
       <TopDIV>
-        <Photos photos={photos} mainPhoto={mainPhoto} updateMainPhoto={updateMainPhoto} />
-        <ProductandStyle currentProduct={currentProduct} currentStyle={currentStyle} setcurrentStyle={setcurrentStyle} setPhotos={setPhotos} styles={styles} updateMainPhoto={updateMainPhoto} />
+        <Photos photos={photos} mainPhoto={mainPhoto} updateMainPhoto={updateMainPhoto} setphotoIndex={setphotoIndex} photoIndex={photoIndex} />
+        <ProductandStyle currentProduct={currentProduct} currentStyle={currentStyle} setcurrentStyle={setcurrentStyle} setPhotos={setPhotos} styles={styles} updateMainPhoto={updateMainPhoto} setphotoIndex={setphotoIndex}/>
       </TopDIV>
 
       <BottomDIV>

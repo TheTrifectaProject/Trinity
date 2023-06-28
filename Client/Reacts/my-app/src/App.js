@@ -41,6 +41,8 @@ const App = () => {
     fetchProducts();
 
   }, []);
+
+
   if (!currentProductId) {
     return null;
   }

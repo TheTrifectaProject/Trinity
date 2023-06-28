@@ -112,7 +112,7 @@ const AddtoBagBtn = styled.button`
 `
 
 
-const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhotos, styles, updateMainPhoto}) => {
+const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhotos, styles, updateMainPhoto, setphotoIndex}) => {
 
   // const skuObj = Object.values(currentStyle.skus);
   const [SizesisOpen, setSizesIsOpen] = useState(false);
@@ -124,7 +124,7 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
   const styleClick = (style) => {
     setcurrentStyle(style);
     setPhotos(style.photos)
-    updateMainPhoto(style.photos[0])
+    updateMainPhoto(style.photos[0], 0)
     setSkus(Object.values(style.skus))
   }
 
