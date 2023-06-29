@@ -46,6 +46,8 @@ const App = () => {
   if (!currentProductId) {
     return null;
   }
+
+
   return (
     <AppDIV>
       <Nav />

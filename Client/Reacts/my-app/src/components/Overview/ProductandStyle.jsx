@@ -77,24 +77,32 @@ const DropDownList = styled("ul")`
   padding: 0;
   margin: 0;
   padding-left: 1em;
-  background: #ffffff;
+  background: #f3f3f3;
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
-  color: #3faffa;
-  font-size: 1.3rem;
-  font-weight: 500;
+  color: #1b3546;
+  font-size: 6.5px;
+  font-weight: 100;
   &:first-child {
     padding-top: 0.8em;
   }
 `;
 
-const ListItem = styled("li")`
+const Listsizes = styled("li")`
   list-style: none;
   margin-bottom: 0.8em;
   &:hover {
-    background-color: grey;
+    background-color: #3faffa;
   cursor: pointer;
+    }
+`;
 
+const Listquant = styled("li")`
+  list-style: none;
+  margin-bottom: 0.8em;
+  &:hover {
+    background-color: #3faffa;
+  cursor: pointer;
     }
 `;
 
@@ -110,7 +118,22 @@ const AddtoBagBtn = styled.button`
     font-size: 30px;
     }
 `
-
+const PriceDIV = styled.div`
+  display:flex;
+  flex-direction: row;
+  margin-top -22px;
+`
+const Strikeprice = styled.h5`
+  text-decoration: line-through;
+  color: red;
+  margin-right: 10px;
+`
+const Price = styled.h5`
+`
+const Discount = styled.h3`
+  color:green;
+  margin-left: 10px;
+`
 
 const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhotos, styles, updateMainPhoto, setphotoIndex}) => {
 
@@ -118,6 +141,8 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
   const [SizesisOpen, setSizesIsOpen] = useState(false);
   const [QuantisOpen, setQuantIsOpen] = useState(false);
   const [skus , setSkus] = useState([]);
+  const [size, setSize] = useState('');
+  const [sizeQuant, setsizeQuant] = useState('')
 
 
 
@@ -125,24 +150,41 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
     setcurrentStyle(style);
     setPhotos(style.photos)
     updateMainPhoto(style.photos[0], 0)
+
     setSkus(Object.values(style.skus))
   }
+  const sizeClick = (size) => {
+    setSize(size)
+    toggleSizes();
+  }
 
+  const quantClick = (quant) => {
+    setsizeQuant({'Name': currentStyle.name, 'size':size, 'Quantity':quant, 'Style':currentStyle.style_id})
+    toggleQuant();
+  }
+
+  const addToBagClick = () => {
+    console.log(sizeQuant);
+  }
   const toggleSizes = () => setSizesIsOpen(!SizesisOpen);
   const toggleQuant = () => setQuantIsOpen(!QuantisOpen);
 
-
+const sizesArr = [1,2,3,4];
 
 if (!styles) {
   return null;
 }
-  return (
-    <NameStyleDIV>
+
+  if (currentStyle.sale_price === null) {
+    return (
+      <NameStyleDIV>
       <TopDIV>
-        <h3>⭐️⭐️⭐️⭐️⭐️</h3>
-        <h5><em>{currentProduct.category}</em></h5>
-        <h1>{currentProduct.name}</h1>
-        <h5><em>${currentStyle.original_price}</em></h5>
+
+          <h3>⭐️⭐️⭐️⭐️⭐️</h3>
+          <h5><em>{currentProduct.category}</em></h5>
+          <h1>{currentProduct.name}</h1>
+          <h5><em>${currentStyle.original_price}</em></h5>
+
       </TopDIV>
       <MidDIV>
         <h2>Style Selector</h2>
@@ -162,7 +204,7 @@ if (!styles) {
               <DropDownList>
                 {skus.map((sku) => {
                   return (
-                    <ListItem>{sku.size}</ListItem>
+                    <Listsizes onClick={() => {sizeClick(sku.size)}}>{sku.size}</Listsizes>
                   )
                 })}
               </DropDownList>
@@ -175,6 +217,11 @@ if (!styles) {
           {QuantisOpen && (
             <DropDownListContainer>
               <DropDownList>
+                {sizesArr.map((el) => {
+                  return (
+                    <Listquant onClick={() => {quantClick(el)}}>{el}</Listquant>
+                  )
+                })}
               </DropDownList>
             </DropDownListContainer>
           )}
@@ -182,12 +229,81 @@ if (!styles) {
       </BottomDIV>
         {(!QuantisOpen && !SizesisOpen) && (
       <CheckoutDIV>
-        <AddtoBagBtn>Add To Bag</AddtoBagBtn>
+        <AddtoBagBtn onClick={addToBagClick}>Add To Bag</AddtoBagBtn>
       </CheckoutDIV>
         )}
 
     </NameStyleDIV>
   )
 }
+else {
+  return (
+    <NameStyleDIV>
+      <TopDIV>
+
+          <h3>⭐️⭐️⭐️⭐️⭐️</h3>
+          <h5><em>{currentProduct.category}</em></h5>
+          <h1>{currentProduct.name}</h1>
+          <PriceDIV>
+            <Strikeprice><em>${currentStyle.original_price}</em></Strikeprice>
+            <h5><em>${currentStyle.sale_price}</em></h5>
+            <Discount>sale price</Discount>
+          </PriceDIV>
+
+      </TopDIV>
+      <MidDIV>
+        <h2>Style Selector</h2>
+        <StylesDIV>
+          {styles.map((style) => {
+            return (
+               <Styleimg onClick={() => {styleClick(style)}} src={style.photos[0].thumbnail_url}/>
+            )
+          })}
+        </StylesDIV>
+      </MidDIV>
+      <BottomDIV>
+        <DropDownContainer>
+          <DropDownHeader onClick={toggleSizes}>Sizes</DropDownHeader>
+          {SizesisOpen && (
+            <DropDownListContainer>
+              <DropDownList>
+                {skus.map((sku) => {
+                  return (
+                    <Listsizes onClick={() => {sizeClick(sku.size)}}>{sku.size}</Listsizes>
+                  )
+                })}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
+
+        <DropDownContainer>
+          <DropDownHeader onClick={toggleQuant}>Quantity</DropDownHeader>
+          {QuantisOpen && (
+            <DropDownListContainer>
+              <DropDownList>
+                {sizesArr.map((el) => {
+                  return (
+                    <Listquant onClick={() => {quantClick(el)}}>{el}</Listquant>
+                  )
+                })}
+              </DropDownList>
+            </DropDownListContainer>
+          )}
+        </DropDownContainer>
+      </BottomDIV>
+        {(!QuantisOpen && !SizesisOpen) && (
+      <CheckoutDIV>
+        <AddtoBagBtn onClick={addToBagClick}>Add To Bag</AddtoBagBtn>
+      </CheckoutDIV>
+        )}
+
+    </NameStyleDIV>
+  )
+}
+}
+
+
+
 
 export default ProductandStyle;
