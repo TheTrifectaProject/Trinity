@@ -14,7 +14,7 @@ flex-direction: column;
 align-items: center;`
 
 const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
@@ -28,8 +28,9 @@ const App = () => {
 
     return axios.get(url, { headers })
       .then((response) => {
-        console.log('fetchProducts', response.data)
-        setcurrentProductId(response.data[0].id)
+        console.log('fetchProducts',
+        response.data)
+        setcurrentProductId(response.data[2].id)
       })
       .catch((error) => {
         console.error(error.response.data);
@@ -56,8 +57,6 @@ const App = () => {
       <Questions currentProductId={currentProductId}/>
       <Reviews currentProductId={currentProductId}/>
     </AppDIV>
-
-
   )
 }
 

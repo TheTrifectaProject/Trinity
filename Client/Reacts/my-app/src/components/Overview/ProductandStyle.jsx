@@ -1,6 +1,7 @@
 import react from 'react'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import styled from "styled-components"
+import Stars from "./Stars.jsx"
 
 
 const NameStyleDIV = styled.div`
@@ -8,8 +9,10 @@ display:flex:
 flex-direction:column;
 width: 45%;
 margin-left: 20px;
+margin-right: 5px;
 padding-left: 20px;
 box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.2);
+background-color: #fffcfc;
 `
 const TopDIV = styled.div`
 display:contents;
@@ -45,8 +48,8 @@ grid-template-columns: 1fr 1fr 1fr ;
 
 const Styleimg = styled.img`
 border: 1px solid black;
-height:56%;
-width: 35%;
+height:60%;
+width: 41%;
 border-radius: 50%;
 margin-bottom: 15px;
 box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .4);
@@ -71,7 +74,9 @@ const DropDownHeader = styled("div")`
   background: #ffffff;
 `;
 
-const DropDownListContainer = styled("div")``;
+const DropDownListContainer = styled("div")`
+overflow-y: auto;
+height 150px;`;
 
 const DropDownList = styled("ul")`
   padding: 0;
@@ -81,7 +86,7 @@ const DropDownList = styled("ul")`
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
   color: #1b3546;
-  font-size: 6.5px;
+  font-size: 27px;
   font-weight: 100;
   &:first-child {
     padding-top: 0.8em;
@@ -111,6 +116,7 @@ const AddtoBagBtn = styled.button`
   height: 55px;
   margin-left:25px;
   font-size: 25px;
+  background-color: #db1b1b39;
   &:hover {
     background-color: #09a709b3;
     color:white;
@@ -135,7 +141,7 @@ const Discount = styled.h3`
   margin-left: 10px;
 `
 
-const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhotos, styles, updateMainPhoto, setphotoIndex}) => {
+const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhotos, styles, updateMainPhoto, setphotoIndex, ratingsData}) => {
 
   // const skuObj = Object.values(currentStyle.skus);
   const [SizesisOpen, setSizesIsOpen] = useState(false);
@@ -143,6 +149,7 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
   const [skus , setSkus] = useState([]);
   const [size, setSize] = useState('');
   const [sizeQuant, setsizeQuant] = useState('')
+
 
 
 
@@ -171,79 +178,26 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
 
 const sizesArr = [1,2,3,4];
 
-if (!styles) {
+if (!styles || !ratingsData) {
   return null;
 }
 
-  if (currentStyle.sale_price === null) {
     return (
       <NameStyleDIV>
-      <TopDIV>
+        {!currentStyle.sale_price ?
+       <TopDIV>
 
-          <h3>⭐️⭐️⭐️⭐️⭐️</h3>
-          <h5><em>{currentProduct.category}</em></h5>
+          <Stars ratingsData={ratingsData} />
           <h1>{currentProduct.name}</h1>
+          <h5><em>{currentProduct.category}</em></h5>
           <h5><em>${currentStyle.original_price}</em></h5>
 
-      </TopDIV>
-      <MidDIV>
-        <h2>Style Selector</h2>
-        <StylesDIV>
-          {styles.map((style) => {
-            return (
-               <Styleimg onClick={() => {styleClick(style)}} src={style.photos[0].thumbnail_url}/>
-            )
-          })}
-        </StylesDIV>
-      </MidDIV>
-      <BottomDIV>
-        <DropDownContainer>
-          <DropDownHeader onClick={toggleSizes}>Sizes</DropDownHeader>
-          {SizesisOpen && (
-            <DropDownListContainer>
-              <DropDownList>
-                {skus.map((sku) => {
-                  return (
-                    <Listsizes onClick={() => {sizeClick(sku.size)}}>{sku.size}</Listsizes>
-                  )
-                })}
-              </DropDownList>
-            </DropDownListContainer>
-          )}
-        </DropDownContainer>
-
-        <DropDownContainer>
-          <DropDownHeader onClick={toggleQuant}>Quantity</DropDownHeader>
-          {QuantisOpen && (
-            <DropDownListContainer>
-              <DropDownList>
-                {sizesArr.map((el) => {
-                  return (
-                    <Listquant onClick={() => {quantClick(el)}}>{el}</Listquant>
-                  )
-                })}
-              </DropDownList>
-            </DropDownListContainer>
-          )}
-        </DropDownContainer>
-      </BottomDIV>
-        {(!QuantisOpen && !SizesisOpen) && (
-      <CheckoutDIV>
-        <AddtoBagBtn onClick={addToBagClick}>Add To Bag</AddtoBagBtn>
-      </CheckoutDIV>
-        )}
-
-    </NameStyleDIV>
-  )
-}
-else {
-  return (
-    <NameStyleDIV>
+      </TopDIV> :
       <TopDIV>
 
-          <h3>⭐️⭐️⭐️⭐️⭐️</h3>
-          <h5><em>{currentProduct.category}</em></h5>
+          <Stars ratingsData={ratingsData} />
           <h1>{currentProduct.name}</h1>
+          <h5><em>{currentProduct.category}</em></h5>
           <PriceDIV>
             <Strikeprice><em>${currentStyle.original_price}</em></Strikeprice>
             <h5><em>${currentStyle.sale_price}</em></h5>
@@ -251,6 +205,8 @@ else {
           </PriceDIV>
 
       </TopDIV>
+      }
+
       <MidDIV>
         <h2>Style Selector</h2>
         <StylesDIV>
@@ -301,9 +257,8 @@ else {
     </NameStyleDIV>
   )
 }
-}
-
-
-
 
 export default ProductandStyle;
+
+
+

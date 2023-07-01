@@ -5,31 +5,37 @@ import { UilAngleRight } from '@iconscout/react-unicons'
 import { UilAngleLeft } from '@iconscout/react-unicons'
 
 
+
 const PhotosDIV = styled.div`
 display:flex;
 padding-right: 25px;
 flex-direction: row;
 justify-content: start;
 width: 60%;
-background-color: #80808027;
+/* background-color: #db1b1b13; */
 `
 
 const PhotoGallery = styled.div`
+overflow: hidden;
 padding-top: 25px;
+margin-left: 20px;
 display:flex;
 flex-direction: column;
 align-items: center;
-width: 15%;
+width: 18%;
+overflow-y: auto;
+height: 90%;
+/* border-right: .5px solid black; */
 `
 const GalleryPhoto = styled.img`
 border: 1px solid black;
-height 58px;
-width 35px;
-margin-left: 15px;
+height 66px;
+width 41px;
+margin-left: 10px;
 margin-bottom: 30px;
 box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .7);
 &:hover {
-  box-shadow: 10px 10px 10px 0 rgb(94, 137, 255);
+  box-shadow: 10px 10px 10px 0 rgba(249, 83, 174, 0.371);
   cursor: pointer;
     }
 `
@@ -37,12 +43,12 @@ box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .7);
 const MainDisplay = styled.div`
 display: flex;
 align-items: center;
-margin-left:12%; ;
+margin-left:8%; ;
 width:100%;`
 
 const MainPhoto = styled.img`
-height: 95%;
-width: 375px;
+height: auto;
+width: 382px;;
 box-shadow: 0 5px 5px 5px rgba(0, 0, 0, .2);
 `
 
