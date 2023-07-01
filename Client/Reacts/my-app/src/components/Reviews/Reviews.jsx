@@ -7,15 +7,15 @@ import {RBreakdown} from "./RBreakdown.jsx"
 import {Card} from "./ReviewCard.jsx"
 import {fetchMeta, fetchReviews} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
 import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import { TopDiv } from './TopDIV.jsx'
 
 export const ReviewsDIV = styled.div`
   width: 100%;
   display:flex;
   flex-direction: column;
   height: auto;
-  border: 3px solid red;
-  `
-
+  /* border: 3px solid red; */
+`
 export const MainDiv = styled.div`
   display:flex;
   flex-direction: column;
@@ -23,9 +23,8 @@ export const MainDiv = styled.div`
   align-items: flex-end;
   width: 100%;
   height: auto;
-  border: 3px solid blue;
+  /* border: 3px solid blue; */
 `
-
 export const ExpandedMainDiv = styled.div`
   display:flex;
   flex-direction: column;
@@ -33,18 +32,19 @@ export const ExpandedMainDiv = styled.div`
   align-items: flex-end;
   width: 100%;
   height: auto;  
-  border: 3px solid blue;
-  
+  /* border: 3px solid blue; */
 `
-
-export const Reviews = () => {
+export const Reviews = ({currentProductId}) => {
+  console.log("currentProductID: ", currentProductId);
   const [reviewProduct, setReviewProduct] = useState()
+  const [isOpen, setIsOpen] = useState(false);
   const [productMeta, setProductMeta] = useState();
   const [allReviews, setAllReviews] = useState(false);
+  const [sortOption, setSortOption] = useState('relevant')
   const [add, setAdd] = useState(false)
  
   useEffect(() => {
-    fetchReviews(1, 5, 'relevant', 40347)
+    fetchReviews(1, 5, sortOption, currentProductId)
       .then((reviews) => {
         setReviewProduct(reviews);
       })
@@ -52,14 +52,14 @@ export const Reviews = () => {
         console.error(error);
       });
     
-    fetchMeta(40347)
+    fetchMeta(currentProductId)
       .then((reviews) => {
         setProductMeta(reviews);
       })
       .catch((error) => {
         console.error(error);
       });
-  }, [])
+  }, [sortOption])
 
   const HandleMoreButton = (e) => {
     e.preventDefault();
@@ -73,9 +73,17 @@ export const Reviews = () => {
   const AddView = (e) => {
     e.preventDefault();
     setAdd(!add)
-
   }
-
+  const toggleDropDown = (e) => {
+    e.preventDefault();
+    setIsOpen(!isOpen);
+  }
+  const HandleSortOption = (option) => {
+    console.log(option)
+    setIsOpen(!isOpen);
+    setSortOption(option)
+    
+  }
 
   if (reviewProduct && productMeta && allReviews) {
     return (
@@ -85,7 +93,9 @@ export const Reviews = () => {
 
           <ExpandedMainDiv>
 
-            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} />
+            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+             HandleSortOption={HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
+             sortOption = {sortOption}/>
 
             {reviewProduct.results.map((review) => {
                 return <Card review={review} />
@@ -96,6 +106,9 @@ export const Reviews = () => {
               AddView = {AddView}/>
 
           </ExpandedMainDiv>
+          {add ? 
+              <AddReview reviewProduct={reviewProduct.results} AddView = {AddView} productMeta = {productMeta}/>
+            : null }
         </div>
       </>
     );
@@ -107,7 +120,9 @@ export const Reviews = () => {
 
           <MainDiv>
 
-            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} />
+            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+            HandleSortOption = {HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
+            sortOption = {sortOption}/>
 
             <Card review={reviewProduct.results[0]} />
             <Card review={reviewProduct.results[1]} />
@@ -115,11 +130,12 @@ export const Reviews = () => {
             <Buttons reviewProduct={reviewProduct.results} productMeta = {productMeta} 
               HandleMoreButton = {HandleMoreButton}
               AddView = {AddView}/>
-            {add ? 
-              <AddReview />
-            : null }
 
           </MainDiv>
+          
+          {add ? 
+              <AddReview reviewProduct={reviewProduct.results} AddView = {AddView} productMeta = {productMeta}/>
+            : null }
         </div>
       </>
     )

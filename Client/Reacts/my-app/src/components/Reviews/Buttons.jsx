@@ -10,7 +10,8 @@ export const AddMoreButtonDiv = styled.div`
   align-items: center; /* Center the content horizontally */
   width: 100%;
   height: 120px;
-  border: 3px solid black;
+  margin-top: 15px;
+  /* border: 3px solid black; */
 `
 export const NewButton = styled.div`
   display: flex; /* Set display to flex */

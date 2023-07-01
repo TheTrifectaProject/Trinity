@@ -1,9 +1,8 @@
 
 //HOUSE ALL THE FETCH FUNCTIONS: 
-import {useState, useEffect} from 'react'
 import axios from 'axios';
 
-const token = `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`
+const token = `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`
 
 
 export const fetchMeta = (product_id) => {
@@ -37,3 +36,19 @@ export const fetchReviews = (page, count, sort, product_id) => {
       throw error;
     });
 }
+
+export const postReview = (reviewData) => {
+  const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
+  const endpoint = '/reviews/';
+  const url = baseURL + endpoint;
+  const headers = {
+    Authorization: token,
+  };
+
+  return axios.post(url, reviewData, { headers })
+    .then((response) => response.data)
+    .catch((error) => {
+      console.error(error.response.data);
+      throw error;
+    });
+};

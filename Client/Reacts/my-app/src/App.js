@@ -1,61 +1,63 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
+import styled from "styled-components"
 import Nav from './components/Nav/Nav.jsx'
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
 import Reviews from './components/Reviews/Reviews.jsx'
-import axios from 'axios';
+import axios from 'axios'
 
-const token = `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`
+const AppDIV = styled.div`
+display:flex;
+flex-direction: column;
+`
 
 const App = () => {
-  // const [results, setResults] = useState([])
-  
-  // const params = {'params' : {'data': 'product'}};
-    // const fetchAnswers = () => {
-    //   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-    //   const endpoint = `/reviews/meta?product_id=40344`;
-    //   const url = baseURL + endpoint;
-    //   const headers = {
-    //     Authorization: token,
-    //   };
-    
-    //   return axios.get(url, { headers })
-    //     .then((response) => response.data)
-    //     .catch((error) => {
-    //       console.error(error.response.data);
-    //       throw error;
-    //     });
-    // }; 
+  let token = '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';
 
-    
-    
-    // useEffect(() => {
-    //   // Example usage of fetchAnswers function
-    //  // Replace with the actual question ID
-    //   fetchAnswers()
-    //     .then((reviews) => {
-    //       // Handle the answers data
-    //       console.log(reviews);
-    //     })
-    //     .catch((error) => {
-    //       // Handle errors
-    //       console.error(error);
-    //     });
-    // }, []);
-  
+  const [currentProductId, setcurrentProductId] =useState('');
 
+  const fetchProducts = () => {
+    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
+    const endpoint = `/products`;
+    const url = baseURL + endpoint;
+    const headers = {
+      Authorization: token,
+    };
+
+    return axios.get(url, { headers })
+      .then((response) => {
+        console.log('fetchProducts', response.data)
+        setcurrentProductId(response.data[0].id)
+      })
+      .catch((error) => {
+        console.error(error.response.data);
+        throw error;
+      });
+  };
+  useEffect(() => {
+
+    fetchProducts();
+
+  }, []);
+
+
+  if (!currentProductId) {
+    return null;
+  }
 
 
   return (
-    <div className = "App" >
+    <AppDIV>
       <Nav />
-      <Overview />
+      <Overview currentProductId={currentProductId}/>
       <RelatedItems />
-      <Questions />
-      <Reviews />
-    </div>
+      <Questions currentProductId={currentProductId}/>
+      <Reviews currentProductId={currentProductId}/>
+    </AppDIV>
+
+
   )
 }
 

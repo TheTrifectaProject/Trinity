@@ -14,8 +14,8 @@ export const RBreakdownDiv = styled.div`
   flex-direction: column;
   width: 35%;
   height: 500px;
-  border: 3px solid black;
-  margin: 63px 0 0 0;
+  /* border: 3px solid black; */
+  margin: 20px 0 0 0;
   `
 export const RatingContainer = styled.div`
   display: flex;
@@ -168,7 +168,7 @@ const UpsideDownTriangleIcon = styled.div`
 `;
 
 export const RBreakdown = ({reviewProduct, productMeta}) => {
-    console.log(productMeta);
+    console.log("review: ", productMeta)
     const [Rating, setRating] = useState();
     const [recommend, setRec] = useState();
     const [fiveStar, setFiveStar] = useState();
@@ -193,6 +193,7 @@ export const RBreakdown = ({reviewProduct, productMeta}) => {
     }, [reviewProduct])
 
     const AverageRating = (reviewProduct) => { 
+        console.log("reviewProduct: ", reviewProduct);
         const allRatings = []
         reviewProduct.forEach((review) => {
             allRatings.push(review.rating)

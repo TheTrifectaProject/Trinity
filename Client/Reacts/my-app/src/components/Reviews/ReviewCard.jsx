@@ -6,9 +6,9 @@ import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/co
 export const ReviewCard = styled.div`
   display:flex;
   flex-direction: column;
-  height: 250px;
+  height: auto;
   width: 90%;
-  border: 2px solid black;
+  border-bottom: 2px solid black;
   margin: auto; 
 `
 export const CardTop = styled.div`
@@ -18,8 +18,8 @@ export const CardTop = styled.div`
   align-items: center;
   height: 30px;
   width: 100%;
-  border: 2px solid black;
   font-size: 16px;
+  margin-top: 10px;
 `
 export const CardSummary = styled.div`
   display:flex;
@@ -28,7 +28,7 @@ export const CardSummary = styled.div`
   align-items: center;
   height: 30px;
   width: 100%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   margin: 5px 0 0 0;
   font-size: 24px;
   overflow: hidden;
@@ -40,42 +40,53 @@ export const FullReview = styled.div`
   justify-content: space-between;
   height: auto;
   width: 100%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   margin: 0px 0 0 0;
   overflow: hidden;
   word-wrap: break-word;
 `
+export const Photos = styled.div`
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  /* border: 2px solid red; */
+`
+export const Thumbnail = styled.img`
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  /* border: 1px solid black;  */
+`;
 export const Recommend = styled.div`
   display: flex;
   height: 25px;
   width: 100%;
-  border: 1px solid black;
-  margin: 7px 0 0 0;
+  /* border: 1px solid black; */
+  margin: 7px 0 10px 0;
 `
 export const isHelpful = styled.div`
   display: flex;
   height: 25px;
-  width: 100%;
-  border: 1px solid black;
-  margin: 7px 0 0 0;
+  width: 100%; 
+  /* border: 1px solid black; */
+  margin: 7px;
 `
 export const Yes = styled.button`
   /* Styles for the button */
   background-color: transparent;
   border: none;
   cursor: pointer;
-
-  /* Styles for the underlined text */
   text-decoration: underline;
 
-  /* Add any additional styles you need */
 `;
 export const CardResponse = styled.div`
   display:flex;
   flex-direction: column;
   height: 50px;
   width: 97%;
-  border: 2px solid black;
+  /* border: 2px solid black; */
   background-color: lightgrey;
   padding: 10px;  
   overflow: auto;
@@ -162,42 +173,47 @@ export const Card = ({review}) => {
 
     return (
         <>
-            <ReviewCard>
-                <CardTop>
-                  <p>
-                      {generateStarIcons(rating)}
-                  </p>
-                  <p>
-                      {ReviewDate()}
-                  </p>
-                </CardTop> 
+          <ReviewCard>
+              <CardTop>
+                <p>
+                    {generateStarIcons(rating)}
+                </p>
+                <p>
+                    {ReviewDate()}
+                </p>
+              </CardTop> 
 
-                <CardSummary>
-                  <h5>{truncateSummary()}</h5>
-                </CardSummary>
+              <CardSummary>
+                <h5>{truncateSummary()}</h5>
+              </CardSummary>
 
-                <FullReview>
-                  <p>{body}</p>
-                
-                </FullReview>
-                {recommend ? 
-                    <Recommend>{rec()}</Recommend>
-                      : null}
+              <FullReview>
+                <p>{body}</p>
+              </FullReview>
+              {/* {photos} ?
+              <Photos>
+                {photos.map((photo, index) => {
+                  return <Thumbnail key={index} src={photo.url}/>
+                })} 
+              </Photos> */}
+              {recommend ? 
+                  <Recommend>{rec()}</Recommend>
+                    : null}
 
-                {response ? 
-                    <CardResponse>
-                    Response:
-                    <p>{response}</p>
-                    </CardResponse>
-                : null}
+              {response ? 
+                  <CardResponse>
+                  Response:
+                  <p>{response}</p>
+                  </CardResponse>
+              : null}
 
-                <isHelpful>
-                    Was this review helpful?
-                    <Yes onClick = {HandleYesClick}>Yes </Yes>
-                    {help}
-                </isHelpful>
+              <isHelpful>
+                  Was this review helpful?
+                  <Yes onClick = {HandleYesClick}>Yes </Yes>
+                  {help}
+              </isHelpful>
 
-            </ReviewCard>
+          </ReviewCard>
         </>
         
     )
