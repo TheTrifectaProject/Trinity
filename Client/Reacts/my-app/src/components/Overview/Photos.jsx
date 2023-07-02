@@ -8,7 +8,8 @@ import { UilAngleLeft } from '@iconscout/react-unicons'
 
 const PhotosDIV = styled.div`
 display:flex;
-padding-right: 25px;
+/* overflow-y: scroll; */
+/* position: fixed; */
 flex-direction: row;
 justify-content: start;
 width: 60%;
@@ -17,23 +18,24 @@ width: 60%;
 
 const PhotoGallery = styled.div`
 overflow: hidden;
+overflow-y: scroll;
 padding-top: 25px;
-margin-left: 20px;
 display:flex;
+margin-top: 21px;
 flex-direction: column;
-align-items: center;
-width: 18%;
+margin-left:20px;
+width: 100%;
 overflow-y: auto;
-height: 90%;
+/* height: 90%; */
 /* border-right: .5px solid black; */
 `
 const GalleryPhoto = styled.img`
 border: 1px solid black;
-height 66px;
-width 41px;
-margin-left: 10px;
+height 72px;
+width 43px;
+
 margin-bottom: 30px;
-box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .7);
+box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, .7);
 &:hover {
   box-shadow: 10px 10px 10px 0 rgba(249, 83, 174, 0.371);
   cursor: pointer;
@@ -43,12 +45,13 @@ box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .7);
 const MainDisplay = styled.div`
 display: flex;
 align-items: center;
-margin-left:8%; ;
-width:100%;`
+/* height: auto; */
+margin-left: -60%;
+width: 90%;`
 
 const MainPhoto = styled.img`
 height: auto;
-width: 382px;;
+width: 410px;
 box-shadow: 0 5px 5px 5px rgba(0, 0, 0, .2);
 `
 
@@ -88,9 +91,9 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
       })}
       </PhotoGallery>
       <MainDisplay>
-        <UilAngleLeft onClick={photoDec}size='45'/>
+        <UilAngleLeft onClick={photoDec}size='65'/>
         <MainPhoto src={photos[photoIndex].url} />
-        <UilAngleRight onClick={photoInc}size='45'/>
+        <UilAngleRight onClick={photoInc}size='65'/>
       </MainDisplay>
 
     </PhotosDIV>

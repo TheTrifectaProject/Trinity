@@ -7,38 +7,42 @@ import Stars from "./Stars.jsx"
 const NameStyleDIV = styled.div`
 display:flex:
 flex-direction:column;
+overflow-y: scroll;
+height:89.9%;
 width: 45%;
-margin-left: 20px;
+margin-top: 35px;
 margin-right: 5px;
-padding-left: 20px;
-box-shadow: 0 3px 3px 3px rgba(0, 0, 0, 0.2);
-background-color: #fffcfc;
+margin-right: 33px;
+/* padding-left: 20px; */
+/* box-shadow: 0 15px 10px 0 rgba(0, 0, 0, 0.3); */
 `
 const TopDIV = styled.div`
 display:contents;
-height: 25%;
+height: 50px;
 width: 100%;
+margin-bottom: 25px;
 `
 const MidDIV = styled.div`
 display:flex;
 flex-direction: column;
-padding-bottom: 10px;
 margin-bottom: 100px;
-height: 25%;
+margin-top:55px;
+height: 210px;
 width: 100%;
 `
 const BottomDIV = styled.div`
-height: 25%;
+height:50px;
 width: 100%;
 display: grid;
 grid-template-columns: 1fr 1fr;
-margin-bottom: -80px;
 `
 
 const CheckoutDIV = styled.div`
-height: 25%;
+height: 50px;
 width: 100%;
 display: grid;
+margin-top: 30px;
+margin-bottom: 75px;
 `
 const StylesDIV = styled.div`
 padding-left: 60px;
@@ -49,7 +53,7 @@ grid-template-columns: 1fr 1fr 1fr ;
 const Styleimg = styled.img`
 border: 1px solid black;
 height:60%;
-width: 41%;
+width: 55px;;
 border-radius: 50%;
 margin-bottom: 15px;
 box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .4);
@@ -72,15 +76,16 @@ const DropDownHeader = styled("div")`
   font-size: 1.3rem;
   color: #000000;
   background: #ffffff;
+
 `;
 
 const DropDownListContainer = styled("div")`
 overflow-y: auto;
-height 150px;`;
+height 150px;
+`
 
 const DropDownList = styled("ul")`
   padding: 0;
-  margin: 0;
   padding-left: 1em;
   background: #f3f3f3;
   border: 2px solid #e5e5e5;
@@ -112,11 +117,13 @@ const Listquant = styled("li")`
 `;
 
 const AddtoBagBtn = styled.button`
-  width: 90%;
-  height: 55px;
-  margin-left:25px;
+  width:  78%;
+  height: 62px;
   font-size: 25px;
   background-color: #db1b1b39;
+  border-radius:35px;
+  margin-left: 50px;
+  margin-bottom: 20px;
   &:hover {
     background-color: #09a709b3;
     color:white;
@@ -188,19 +195,22 @@ if (!styles || !ratingsData) {
        <TopDIV>
 
           <Stars ratingsData={ratingsData} />
-          <h1>{currentProduct.name}</h1>
           <h5><em>{currentProduct.category}</em></h5>
+          <h1>{currentProduct.name}</h1>
+          <h4><em>{currentStyle.name}</em></h4>
           <h5><em>${currentStyle.original_price}</em></h5>
 
       </TopDIV> :
       <TopDIV>
 
           <Stars ratingsData={ratingsData} />
-          <h1>{currentProduct.name}</h1>
           <h5><em>{currentProduct.category}</em></h5>
+          <h1>{currentProduct.name}</h1>
+          <h4><em>{currentStyle.name}</em></h4>
+
           <PriceDIV>
-            <Strikeprice><em>${currentStyle.original_price}</em></Strikeprice>
             <h5><em>${currentStyle.sale_price}</em></h5>
+            <Strikeprice><em>${currentStyle.original_price}</em></Strikeprice>
             <Discount>sale price</Discount>
           </PriceDIV>
 
@@ -251,14 +261,18 @@ if (!styles || !ratingsData) {
         {(!QuantisOpen && !SizesisOpen) && (
       <CheckoutDIV>
         <AddtoBagBtn onClick={addToBagClick}>Add To Bag</AddtoBagBtn>
+        <AddtoBagBtn>Favorite ❤️</AddtoBagBtn>
+        <h2>{currentProduct.slogan}</h2>
+        <p> ~ {currentProduct.description} ~ </p>
       </CheckoutDIV>
         )}
+        {/* <div> <h2>{currentProduct.slogan}</h2>
+        <p> ~ {currentProduct.description} ~ </p></div> */}
+
 
     </NameStyleDIV>
   )
 }
 
 export default ProductandStyle;
-
-
 

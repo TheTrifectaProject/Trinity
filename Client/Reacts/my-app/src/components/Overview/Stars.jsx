@@ -34,11 +34,10 @@ const Stars = ({ratingsData}) => {
     const sum = allRatings.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
     const average = sum / allRatings.length;
     setavgRating((average).toFixed(1));
-
-}
+};
 
 const nums = () => {
-  console.log(avgRating)
+  console.log('AVG RATING',avgRating)
   let decimalIndex = avgRating.toString().indexOf(".");
   let decimalValue = Number(avgRating.toString().substring(decimalIndex + 1))
   let fullNum = Math.trunc(avgRating);
@@ -57,17 +56,21 @@ const nums = () => {
     setfullStars(arr)
     sethalfStars([1]);
   }
-}
+};
 
 useEffect (() => {
-  // if (ratingsData) {}
-    AverageRating(ratingsData);
+
+  if (ratingsData) {
+   AverageRating(ratingsData);
+  }
+
+
 
 
      nums();
 
 
-}, [avgRating])
+}, [ratingsData])
 
 const facebook = () => {
   const url = 'https://www.facebook.com/';
@@ -83,17 +86,18 @@ const pinterest = () => {
   const url = 'https://www.pinterest.com/';
   window.open(url, '_blank');
 }
-if (!fullStars) {
+if (!avgRating) {
   return null
-}
-  return (
-    <TopDIV>
+} return (
+ <TopDIV>
       <StarDIV>
        {fullStars.map((el) => {
-        return <UisStar onClick={() => {console.log(avgRating)}}color="#ffe600" size="38"/>
+        return (
+        <UisStar onClick={() => {console.log(avgRating)}}color="#ffe600" size="20"/>
+        )
       })}
       {halfStars.map((el) => {
-        return <UisStarHalfAlt color="#ffe600" size="38" />
+        return (<UisStarHalfAlt color="#ffe600" size="20" />)
       })}
     </StarDIV>
     <SocialDIV>
@@ -102,8 +106,9 @@ if (!fullStars) {
       <UilParkingSquare onClick={pinterest} color="#ff0000" size="28"/>
     </SocialDIV>
     </TopDIV>
+)
 
-  )
+
 }
 
 export default Stars;

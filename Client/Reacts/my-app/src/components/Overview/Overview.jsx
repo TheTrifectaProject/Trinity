@@ -9,17 +9,17 @@ const OverviewDIV = styled.div`
 display:flex;
 flex-direction: column;
 margin-top: 45px;
-height:725px;
-width: 1220px;
+height:750px;
+width: 75%;
 margin-bottom: 40px;
 margin-left: 75px;
 margin-right: 75px;
 box-shadow: 0 20px 10px 10px rgba(0, 0, 0, 0.2);
-background-color: #db1b1b13;
+background-color: #db1b1b14;
 `
 const TopDIV = styled.div`
 display:flex;
-height:80%;
+height:93%;
 `
 
 const BottomDIV = styled.div`
@@ -33,7 +33,7 @@ margin-left: 10%;
 margin-bottom:10px;
 height:20%;
 width:80%;
-background-color: #db1b1b13;
+
 border-radius: 300px;
 `
 const DescriptionDIV = styled.div`
@@ -55,7 +55,7 @@ const Overview = ({currentProductId}) => {
   const [photoIndex, setphotoIndex] = useState(0)
   const [ratingsData, setRatingsData] = useState('')
 
-  let token = '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';
+  let token = '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';
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
@@ -139,10 +139,10 @@ const Overview = ({currentProductId}) => {
         <ProductandStyle currentProduct={currentProduct} currentStyle={currentStyle} setcurrentStyle={setcurrentStyle} setPhotos={setPhotos} styles={styles} updateMainPhoto={updateMainPhoto} setphotoIndex={setphotoIndex} ratingsData ={ratingsData}/>
       </TopDIV>
 
-      <BottomDIV>
+      {/* <BottomDIV>
         <DescriptionDIV><h2>{currentProduct.slogan}</h2>
         <p> ~ {currentProduct.description} ~ </p></DescriptionDIV>
-      </BottomDIV>
+      </BottomDIV> */}
 
     </OverviewDIV>
   )

@@ -14,7 +14,7 @@ flex-direction: column;
 align-items: center;`
 
 const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
@@ -30,7 +30,7 @@ const App = () => {
       .then((response) => {
         console.log('fetchProducts',
         response.data)
-        setcurrentProductId(response.data[2].id)
+        setcurrentProductId(response.data[0].id)
       })
       .catch((error) => {
         console.error(error.response.data);
@@ -41,7 +41,7 @@ const App = () => {
 
     fetchProducts();
 
-  }, []);
+  }, [currentProductId]);
 
 
   if (!currentProductId) {
