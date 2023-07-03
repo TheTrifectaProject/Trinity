@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/helper-module-imports": "^7.22.5",
-    "@iconscout/react-unicons": "^2.0.2",
-    "@iconscout/react-unicons-solid": "^1.0.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

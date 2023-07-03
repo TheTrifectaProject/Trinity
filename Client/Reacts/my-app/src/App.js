@@ -11,7 +11,7 @@ import axios from 'axios'
 const AppDIV = styled.div`
 display:flex;
 flex-direction: column;
-align-items: center;`
+
 
 const App = () => {
   let token = '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';
@@ -47,6 +47,9 @@ const App = () => {
   if (!currentProductId) {
     return null;
   }
+
+=======
+  }, []);
 
 
   return (
