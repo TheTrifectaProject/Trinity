@@ -11,10 +11,7 @@ import axios from 'axios'
 const AppDIV = styled.div`
 display:flex;
 flex-direction: column;
-`
 
-const App = () => {
-  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
@@ -41,12 +38,6 @@ const App = () => {
     fetchProducts();
 
   }, []);
-
-
-  if (!currentProductId) {
-    return null;
-  }
-
 
   return (
     <AppDIV>
