@@ -49,7 +49,7 @@ export const DropdownItem = styled.div`
 `
 
 export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropDown, sortOption, numberReviews}) => {
-    
+
     const [numReviews, setNumReviews] = useState(numberReviews)
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropD
         console.log("number of reviews: ", numReviews)
         setNumReviews(numberReviews)
       }
-     
+
     }, [numberReviews])
 
     return (
@@ -66,7 +66,7 @@ export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropD
             <NumberViews>
               {numberReviews} Reviews
             </NumberViews>
-          
+
             <SortReview>
               <DropdownButton onClick = {(e) => toggleDropDown(e)}>
                 Sort By: {sortOption}

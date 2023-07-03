@@ -11,16 +11,17 @@ import axios from 'axios'
 const AppDIV = styled.div`
 display:flex;
 flex-direction: column;
+`
 
 
 const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
   const fetchProducts = () => {
-    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-    const endpoint = `/products`;
+    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+    const endpoint = '/products';
     const url = baseURL + endpoint;
     const headers = {
       Authorization: token,
@@ -47,9 +48,6 @@ const App = () => {
   if (!currentProductId) {
     return null;
   }
-
-=======
-  }, []);
 
 
   return (
