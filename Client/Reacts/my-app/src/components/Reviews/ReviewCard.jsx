@@ -2,6 +2,7 @@ import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
 import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import {updateHelpful, report} from './fetch.js'
  
 export const ReviewCard = styled.div`
   display:flex;
@@ -66,12 +67,20 @@ export const Recommend = styled.div`
   /* border: 1px solid black; */
   margin: 7px 0 10px 0;
 `
-export const isHelpful = styled.div`
+export const IsHelpful = styled.div`
   display: flex;
+  flex-direction: row;
+  align-items: center;
   height: 25px;
   width: 100%; 
   /* border: 1px solid black; */
   margin: 7px;
+`
+export const ReportDiv = styled.div`
+  display: flex;
+  height: 90%;
+  width: 50%; 
+  /* border: 1px solid black; */
 `
 export const Yes = styled.button`
   /* Styles for the button */
@@ -79,8 +88,15 @@ export const Yes = styled.button`
   border: none;
   cursor: pointer;
   text-decoration: underline;
-
 `;
+
+export const ReportButton = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 7px;
+`
 export const CardResponse = styled.div`
   display:flex;
   flex-direction: column;
@@ -120,7 +136,6 @@ function generateStarIcons(count) {
   }
 
 export const Card = ({review}) => {
-    console.log(review);
     const [body, setBody] = useState();
     const [dateName, setDateName] = useState();
     const [help, setHelp] = useState();
@@ -139,9 +154,9 @@ export const Card = ({review}) => {
       setRating(review.rating)
       setRecommend(review.recommend)
       setResponse(review.response)
-      setId(review.reviewer_id)
+      setId(review.review_id)
       setSummary(review.summary)
-    }, [{review}])
+    }, [help])
 
     const ReviewDate = () => {
         const date = new Date(review.date)
@@ -168,7 +183,26 @@ export const Card = ({review}) => {
 
     const HandleYesClick = () => {
       //some sort of axios put request 
-      console.log("clicked yes!")
+      console.log("clicked yes!: ", id);
+      updateHelpful(id)
+        .then((reviews) => {
+          setHelp((prevHelp) => prevHelp + 1);
+          console.log("Handle Yes Click", reviews);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      
+    }
+
+    const HandleReport = () => {
+      report(id)
+        .then((reviews) => {
+          console.log("Handle Yes Click", reviews);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
 
     return (
@@ -190,12 +224,12 @@ export const Card = ({review}) => {
               <FullReview>
                 <p>{body}</p>
               </FullReview>
-              {/* {photos} ?
+              {photos ?
               <Photos>
                 {photos.map((photo, index) => {
                   return <Thumbnail key={index} src={photo.url}/>
                 })} 
-              </Photos> */}
+              </Photos> : null}
               {recommend ? 
                   <Recommend>{rec()}</Recommend>
                     : null}
@@ -207,15 +241,18 @@ export const Card = ({review}) => {
                   </CardResponse>
               : null}
 
-              <isHelpful>
-                  Was this review helpful?
-                  <Yes onClick = {HandleYesClick}>Yes </Yes>
-                  {help}
-              </isHelpful>
+            <IsHelpful>
+      
+                Was this review helpful?
+                <Yes onClick={HandleYesClick}>Yes</Yes>
+                {help} | 
+                <ReportDiv>
+                  <ReportButton onClick = {HandleReport}>report</ReportButton>
+                </ReportDiv>
+              
+            </IsHelpful>
 
           </ReviewCard>
         </>
-        
     )
-
 }

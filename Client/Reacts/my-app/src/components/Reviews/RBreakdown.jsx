@@ -15,7 +15,7 @@ export const RBreakdownDiv = styled.div`
   width: 35%;
   height: 500px;
   /* border: 3px solid black; */
-  margin: 20px 0 0 0;
+  margin: 20px 0 0 20px;
   `
 export const RatingContainer = styled.div`
   display: flex;
@@ -181,14 +181,17 @@ export const RBreakdown = ({reviewProduct, productMeta}) => {
 
 
     useEffect(() => {
+        const clonedReviewProduct = Array.isArray(reviewProduct)
+        ? [...reviewProduct]
+        : [];       
         AverageSizeFit(productMeta)
-        AverageRating(reviewProduct)
-        Recommend(reviewProduct)
-        setFiveStar(findCountStar(reviewProduct)[0])
-        setFourStar(findCountStar(reviewProduct)[1])
-        setThreeStar(findCountStar(reviewProduct)[2])
-        setTwoStar(findCountStar(reviewProduct)[3])
-        setOneStar(findCountStar(reviewProduct)[4])
+        AverageRating(clonedReviewProduct)
+        Recommend(clonedReviewProduct)
+        setFiveStar(findCountStar(clonedReviewProduct)[0])
+        setFourStar(findCountStar(clonedReviewProduct)[1])
+        setThreeStar(findCountStar(clonedReviewProduct)[2])
+        setTwoStar(findCountStar(clonedReviewProduct)[3])
+        setOneStar(findCountStar(clonedReviewProduct)[4])
 
     }, [reviewProduct])
 

@@ -186,6 +186,32 @@ export const SubmitReview = styled.div`
   border: 1px solid black;  
   margin: 25px 0 0 0;  
 `
+export const RatingButton = styled.button`
+  background-color: ${({ selected }) => (selected ? 'black' : 'transparent')};
+  color: ${({ selected }) => (selected ? 'white' : 'black')};
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+
+`;
+export const YesNoButton = styled.button`
+  background-color: ${({ selected }) => (selected ? 'black' : 'transparent')};
+  color: ${({ selected }) => (selected ? 'white' : 'dark grey')};
+  border: none;
+  cursor: pointer;
+  border-radius: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+`;
+
+export const CharactertisticButton = styled.button`
+  background-color: ${({ selected }) => (selected ? 'black' : 'transparent')};
+  color: ${({ selected }) => (selected ? 'white' : 'black')};
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+`
+
 // export const 
 
 export const AddReview = ({reviewProduct, AddView, productMeta}) => {
@@ -206,7 +232,7 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
     const [photos, setPhotos] = useState([])
     const [selectedPhotos, setSelectedPhotos] = useState([])
     const [info, setInfo] = useState({})
-     
+    const [characteristics, setCharacteristics] = useState({});
 
     const allCharacteristics = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']
 
@@ -250,24 +276,12 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
       }
     }
 
-    const handleCheckbox = (event, characteristic, number) => {
-        if (event) {
-          if(characteristic === "Size") {
-            setSize(number);
-            console.log(Size)
-            
-          } else if (characteristic === "Width") {
-            setWidth(number);
-          } else if (characteristic === "Comfort") {
-            setComfort(number);
-          } else if (characteristic === "Quality") {
-            setQuality(number);
-          } else if (characteristic === "Length") {
-            setLength(number);
-          } else if (characteristic === "Fit") {
-            setFit(number);
-          } 
-        } 
+    const handleCheckbox = (characteristic, number) => {
+      setCharacteristics((prevState) => ({
+        ...prevState,
+        [characteristic]: number
+      }))
+      console.log('characteristics: ',characteristics);
       };
     
     const handleStars = (event, num) => {
@@ -362,14 +376,14 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                     <OverallRating>
                         Choose Star Rating!
                         {[1, 2, 3, 4, 5].map((num) => {
-                            return <button value = {num} required onClick = {(e) => 
-                                handleStars(e, num)}>{num}</button>
+                            return <RatingButton selected={num === stars} value = {num} required onClick = {(e) => 
+                                handleStars(e, num)}>{num}</RatingButton>
                         })}
                         <RecommendProduct>
                             Do you recommend?
-                                <YesNo required onClick = {(e) => {handleYesNo(e, 'Yes')}}>Yes</YesNo>
+                                <YesNoButton selected={recommend === 'Yes'} required onClick = {(e) => {handleYesNo(e, 'Yes')}}>Yes</YesNoButton>
                                 or 
-                                <YesNo required onClick = {(e) => {handleYesNo(e, 'No')}}>No</YesNo>
+                                <YesNoButton selected={recommend === 'No'} required onClick = {(e) => {handleYesNo(e, 'No')}}>No</YesNoButton>
                         </RecommendProduct>
                     </OverallRating>
                     
@@ -380,8 +394,12 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                                   {characteristic}
                                   <div>
                                       {[1, 2, 3, 4, 5].map((num) => {
-                                          return <button required value = {num} onClick = {(e) => 
-                                              handleCheckbox(e, characteristic, num)}>{num}</button>
+                                          return <CharactertisticButton 
+                                                    selected={characteristics[characteristic] === num}
+                                                    required value = {num} 
+                                                    onClick = {() => handleCheckbox(characteristic, num)}>
+                                                      {num}
+                                                  </CharactertisticButton>
                                       })}
                                       
                                   </div>

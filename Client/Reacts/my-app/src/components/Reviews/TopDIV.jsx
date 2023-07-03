@@ -31,7 +31,7 @@ export const DropdownButton = styled.button`
   border: none;
   padding: 10px 15px;
   cursor: pointer;
-`;
+`
 export const DropdownContent = styled.div`
   position: absolute;
   background-color: #f9f9f9;
@@ -48,18 +48,23 @@ export const DropdownItem = styled.div`
   }
 `
 
-export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropDown, sortOption}) => {
-    const [totalReviews, setTotalReviews] = useState()
+export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropDown, sortOption, numberReviews}) => {
+    
+    const [numReviews, setNumReviews] = useState(numberReviews)
 
     useEffect(() => {
-      setTotalReviews(reviewProduct.length + ' Reviews')
-    }, []);
+      if(numberReviews !== undefined) {
+        console.log("number of reviews: ", numReviews)
+        setNumReviews(numberReviews)
+      }
+     
+    }, [numberReviews])
 
     return (
         <>
           <TopDiv>
             <NumberViews>
-              {totalReviews}
+              {numberReviews} Reviews
             </NumberViews>
           
             <SortReview>

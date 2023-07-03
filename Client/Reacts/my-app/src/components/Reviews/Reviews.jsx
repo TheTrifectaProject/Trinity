@@ -36,17 +36,22 @@ export const ExpandedMainDiv = styled.div`
 `
 export const Reviews = ({currentProductId}) => {
   console.log("currentProductID: ", currentProductId);
-  const [reviewProduct, setReviewProduct] = useState()
+  const [reviewProduct, setReviewProduct] = useState();
+  const [numberReviews, setNumberReviews] = useState();
   const [isOpen, setIsOpen] = useState(false);
   const [productMeta, setProductMeta] = useState();
   const [allReviews, setAllReviews] = useState(false);
   const [sortOption, setSortOption] = useState('relevant')
   const [add, setAdd] = useState(false)
  
+  //currentProductID find to see if there are number of Reviews inside that. 
   useEffect(() => {
-    fetchReviews(1, 5, sortOption, currentProductId)
+    fetchReviews(1, 12, sortOption, currentProductId)
       .then((reviews) => {
-        setReviewProduct(reviews);
+        setReviewProduct(reviews)
+        setNumberReviews(reviews.results.length);
+        
+      
       })
       .catch((error) => {
         console.error(error);
@@ -95,7 +100,7 @@ export const Reviews = ({currentProductId}) => {
 
             <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
              HandleSortOption={HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
-             sortOption = {sortOption}/>
+             sortOption = {sortOption} numberReviews = {numberReviews}/>
 
             {reviewProduct.results.map((review) => {
                 return <Card review={review} />
@@ -122,7 +127,7 @@ export const Reviews = ({currentProductId}) => {
 
             <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
             HandleSortOption = {HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
-            sortOption = {sortOption}/>
+            sortOption = {sortOption} numberReviews = {numberReviews}/>
 
             <Card review={reviewProduct.results[0]} />
             <Card review={reviewProduct.results[1]} />
