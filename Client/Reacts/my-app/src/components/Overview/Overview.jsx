@@ -41,7 +41,7 @@ const Overview = ({currentProductId}) => {
   const [photos, setPhotos] = useState('');
   const [mainPhoto, setmainPhoto] = useState('');
 
-  let token = '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';
+  let token = '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';
 
 //40344
     // const fetchProducts = () => {

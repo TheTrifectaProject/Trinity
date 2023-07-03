@@ -1,8 +1,8 @@
 import react from 'react'
 import styled from "styled-components"
 import {useState} from 'react'
-import {NavbarContainer, Logodiv, Searchdiv, SearchInput, SearchButton, Logoimg} from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/styles/Nav.style.js'
-import logo from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/nav-logo.png'
+import {NavbarContainer, Logodiv, Searchdiv, SearchInput, SearchButton, Logoimg} from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/styles/Nav.style.jsx'
+import logo from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/nav-logo.png'
 
 
 const Nav = () => {
