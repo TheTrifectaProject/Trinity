@@ -13,6 +13,9 @@ display:flex;
 flex-direction: column;
 
 
+const App = () => {
+  let token = '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';
+
   const [currentProductId, setcurrentProductId] =useState('');
 
   const fetchProducts = () => {
@@ -25,8 +28,9 @@ flex-direction: column;
 
     return axios.get(url, { headers })
       .then((response) => {
-        console.log('fetchProducts', response.data)
-        setcurrentProductId(response.data[0].id)
+        console.log('fetchProducts',
+        response.data)
+        setcurrentProductId(response.data[2].id)
       })
       .catch((error) => {
         console.error(error.response.data);
@@ -37,7 +41,16 @@ flex-direction: column;
 
     fetchProducts();
 
+  }, [currentProductId]);
+
+
+  if (!currentProductId) {
+    return null;
+  }
+
+=======
   }, []);
+
 
   return (
     <AppDIV>
@@ -47,8 +60,6 @@ flex-direction: column;
       <Questions currentProductId={currentProductId}/>
       <Reviews currentProductId={currentProductId}/>
     </AppDIV>
-
-
   )
 }
 
