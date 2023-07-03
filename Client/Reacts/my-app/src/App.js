@@ -1,7 +1,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import Nav from './components/Nav/Nav.jsx'
+import Nav from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
@@ -11,7 +11,10 @@ import axios from 'axios'
 const AppDIV = styled.div`
 display:flex;
 flex-direction: column;
+`
 
+const App = () => {
+  let token = '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';
 
 const App = () => {
   let token = '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';
@@ -50,6 +53,12 @@ const App = () => {
 
 =======
   }, []);
+
+
+  if (!currentProductId) {
+    return null;
+  }
+
 
 
   return (

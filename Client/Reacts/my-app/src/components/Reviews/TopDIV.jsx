@@ -50,15 +50,15 @@ export const DropdownItem = styled.div`
 
 export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropDown, sortOption, numberReviews}) => {
     
-    const [numReviews, setNumReviews] = useState(numberReviews)
+    // const [numReviews, setNumReviews] = useState(numberReviews)
 
-    useEffect(() => {
-      if(numberReviews !== undefined) {
-        console.log("number of reviews: ", numReviews)
-        setNumReviews(numberReviews)
-      }
+    // useEffect(() => {
+    //   if(numberReviews !== undefined) {
+    //     console.log("number of reviews: ", numReviews)
+    //     setNumReviews(numberReviews)
+    //   }
      
-    }, [numberReviews])
+    // }, [])
 
     return (
         <>
