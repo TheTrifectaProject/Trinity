@@ -13,8 +13,6 @@ width: 45%;
 margin-top: 35px;
 margin-right: 5px;
 margin-right: 33px;
-/* padding-left: 20px; */
-/* box-shadow: 0 15px 10px 0 rgba(0, 0, 0, 0.3); */
 `
 const TopDIV = styled.div`
 display:contents;

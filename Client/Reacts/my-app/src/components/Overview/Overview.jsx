@@ -55,7 +55,7 @@ const Overview = ({currentProductId}) => {
   const [photoIndex, setphotoIndex] = useState(0)
   const [ratingsData, setRatingsData] = useState('')
 
-  let token = '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';
+  let token = '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';
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
