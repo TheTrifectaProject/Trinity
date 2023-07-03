@@ -93,11 +93,11 @@ if (!avgRating) {
       <StarDIV>
        {fullStars.map((el) => {
         return (
-        <UisStar onClick={() => {console.log(avgRating)}}color="#ffe600" size="20"/>
+        <UisStar onClick={() => {console.log(avgRating)}}color="#ffd900" size="20"/>
         )
       })}
       {halfStars.map((el) => {
-        return (<UisStarHalfAlt color="#ffe600" size="20" />)
+        return (<UisStarHalfAlt color="#ffd900" size="20" />)
       })}
     </StarDIV>
     <SocialDIV>

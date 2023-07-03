@@ -25,6 +25,7 @@ margin-top: 21px;
 flex-direction: column;
 margin-left:20px;
 width: 100%;
+height: 75%;
 overflow-y: auto;
 /* height: 90%; */
 /* border-right: .5px solid black; */
@@ -36,10 +37,14 @@ width 43px;
 
 margin-bottom: 30px;
 box-shadow: 5px 5px 5px 0 rgba(0, 0, 0, .7);
-&:hover {
-  box-shadow: 10px 10px 10px 0 rgba(249, 83, 174, 0.371);
-  cursor: pointer;
-    }
+`
+
+const CurrentGalleryPhoto = styled.img`
+border: 1px solid black;
+height 72px;
+width 43px;
+margin-bottom: 30px;
+box-shadow: 9px 9px 9px 0 rgba(0, 112, 187, 0.916);
 `
 
 const MainDisplay = styled.div`
@@ -85,9 +90,15 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
 
       <PhotoGallery>
         {photos.map((photo, i) => {
-          return (
+          if (photo !== mainPhoto) {
+           return (
           <GalleryPhoto onClick={() => {updateMainPhoto(photo, i)}} src={photo.thumbnail_url} />
         )
+          } else {
+            return (
+              <CurrentGalleryPhoto onClick={() => {updateMainPhoto(photo, i)}} src={photo.thumbnail_url}  />
+            )
+          }
       })}
       </PhotoGallery>
       <MainDisplay>

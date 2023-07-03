@@ -15,7 +15,7 @@ margin-bottom: 40px;
 margin-left: 75px;
 margin-right: 75px;
 box-shadow: 0 20px 10px 10px rgba(0, 0, 0, 0.2);
-background-color: #db1b1b14;
+background-color: #79797913;
 `
 const TopDIV = styled.div`
 display:flex;
@@ -55,7 +55,7 @@ const Overview = ({currentProductId}) => {
   const [photoIndex, setphotoIndex] = useState(0)
   const [ratingsData, setRatingsData] = useState('')
 
-  let token = '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';
+  let token = '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';
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL

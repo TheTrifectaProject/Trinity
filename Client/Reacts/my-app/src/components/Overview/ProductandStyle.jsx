@@ -20,47 +20,54 @@ const TopDIV = styled.div`
 display:contents;
 height: 50px;
 width: 100%;
-margin-bottom: 25px;
 `
 const MidDIV = styled.div`
 display:flex;
 flex-direction: column;
-margin-bottom: 100px;
-margin-top:55px;
+margin-bottom: 110px;
 height: 210px;
 width: 100%;
+`
+const CurrentStyle = styled.h4`
+border-bottom: 2mm ridge rgba(162, 188, 206, 0.6);
+margin-top: -10px;
+width:10%;
 `
 const BottomDIV = styled.div`
 height:50px;
 width: 100%;
 display: grid;
 grid-template-columns: 1fr 1fr;
+margin-bottom: 14px;
 `
 
 const CheckoutDIV = styled.div`
 height: 50px;
 width: 100%;
 display: grid;
-margin-top: 30px;
 margin-bottom: 75px;
 `
 const StylesDIV = styled.div`
-padding-left: 60px;
+padding-left: 30px;
 display: grid;
-grid-template-columns: 1fr 1fr 1fr ;
+grid-template-columns: 1fr 1fr 1fr 1fr;
 `
 
 const Styleimg = styled.img`
 border: 1px solid black;
-height:60%;
-width: 55px;;
+height: 60px;
+width: 55px;
 border-radius: 50%;
 margin-bottom: 15px;
 box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, .4);
-&:hover {
-  box-shadow: 0 0 20px 10px rgba(94, 137, 255, 0.655);
-  cursor: pointer;
-    }
+`
+const Currentstyleimg = styled.img`
+border: 1px solid rgb(10, 158, 250);
+height: 60px;
+width: 55px;
+border-radius: 50%;
+margin-bottom: 15px;
+box-shadow: 10px 10px 10px 0 rgb(10, 158, 250);
 `
 
   const DropDownContainer = styled("div")`
@@ -118,17 +125,30 @@ const Listquant = styled("li")`
 
 const AddtoBagBtn = styled.button`
   width:  78%;
-  height: 62px;
-  font-size: 25px;
-  background-color: #db1b1b39;
+  height: 59px;
+  font-size: 21px;
+  color:white;
+  background-color: #000000;
   border-radius:35px;
   margin-left: 50px;
   margin-bottom: 20px;
   &:hover {
-    background-color: #09a709b3;
-    color:white;
+    background-color: #969696c8;
     cursor: pointer;
-    font-size: 30px;
+    font-size: 24px;
+    }
+`
+const FavoriteBtn = styled.button`
+  width:  78%;
+  height: 59px;
+  font-size: 21px;
+  border-radius:35px;
+  margin-left: 50px;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: #ac154c57;
+    cursor: pointer;
+    font-size: 24px;
     }
 `
 const PriceDIV = styled.div`
@@ -197,7 +217,6 @@ if (!styles || !ratingsData) {
           <Stars ratingsData={ratingsData} />
           <h5><em>{currentProduct.category}</em></h5>
           <h1>{currentProduct.name}</h1>
-          <h4><em>{currentStyle.name}</em></h4>
           <h5><em>${currentStyle.original_price}</em></h5>
 
       </TopDIV> :
@@ -206,7 +225,6 @@ if (!styles || !ratingsData) {
           <Stars ratingsData={ratingsData} />
           <h5><em>{currentProduct.category}</em></h5>
           <h1>{currentProduct.name}</h1>
-          <h4><em>{currentStyle.name}</em></h4>
 
           <PriceDIV>
             <h5><em>${currentStyle.sale_price}</em></h5>
@@ -219,11 +237,18 @@ if (!styles || !ratingsData) {
 
       <MidDIV>
         <h2>Style Selector</h2>
+        <CurrentStyle><em>{currentStyle.name.split(" ").join()}</em></CurrentStyle>
         <StylesDIV>
           {styles.map((style) => {
-            return (
+            if (style !== currentStyle) {
+             return (
                <Styleimg onClick={() => {styleClick(style)}} src={style.photos[0].thumbnail_url}/>
             )
+            } else {
+              return (
+                <Currentstyleimg onClick={() => {styleClick(style)}} src={style.photos[0].thumbnail_url} />
+              )
+            }
           })}
         </StylesDIV>
       </MidDIV>
@@ -261,15 +286,11 @@ if (!styles || !ratingsData) {
         {(!QuantisOpen && !SizesisOpen) && (
       <CheckoutDIV>
         <AddtoBagBtn onClick={addToBagClick}>Add To Bag</AddtoBagBtn>
-        <AddtoBagBtn>Favorite ❤️</AddtoBagBtn>
+        <FavoriteBtn>Favorite ❤️</FavoriteBtn>
         <h2>{currentProduct.slogan}</h2>
         <p> ~ {currentProduct.description} ~ </p>
       </CheckoutDIV>
         )}
-        {/* <div> <h2>{currentProduct.slogan}</h2>
-        <p> ~ {currentProduct.description} ~ </p></div> */}
-
-
     </NameStyleDIV>
   )
 }
