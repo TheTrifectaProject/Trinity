@@ -1,7 +1,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import Nav from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
+import Nav from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
@@ -14,10 +14,7 @@ flex-direction: column;
 `
 
 const App = () => {
-  let token = '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';
-
-const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
@@ -50,16 +47,6 @@ const App = () => {
   if (!currentProductId) {
     return null;
   }
-
-=======
-  }, []);
-
-
-  if (!currentProductId) {
-    return null;
-  }
-
-
 
   return (
     <AppDIV>

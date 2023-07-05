@@ -3,7 +3,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import {postReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
+import {postReview} from "/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
 
 
 export const AddWindow = styled.div`
@@ -58,7 +58,7 @@ export const Title = styled.div`
   height: 10%;
   margin: 0px 0 0 10px;
   font-size: 44px;
-  border: 1px solid black;  
+  border: 1px solid black;
 `
 export const OverallRating = styled.div`
   display: flex;
@@ -67,7 +67,7 @@ export const OverallRating = styled.div`
   width: 75%;
   height: 40px;
   border: 1px solid black;
-  margin: 25px 0 0 0; 
+  margin: 25px 0 0 0;
 `
 export const YesNo = styled.div`
   background-color: transparent;
@@ -113,7 +113,7 @@ export const ReviewSummary = styled.div`
   flex-direction: column;
   width: 75%;
   height: 10%;
-  border: 1px solid black;    
+  border: 1px solid black;
 `
 export const SummaryTextBox = styled.input`
   width: 75%;
@@ -127,7 +127,7 @@ export const ReviewBody = styled.div`
   flex-direction: column;
   width: 75%;
   height: 25%;
-  border: 1px solid black;    
+  border: 1px solid black;
 `
 export const FullTextBox = styled.input`
   width: 75%;
@@ -140,7 +140,7 @@ export const UploadPhotos = styled.div`
   justify-content: center;
   width: 75%;
   height: 5%;
-  border: 1px solid black; 
+  border: 1px solid black;
 `
 const ThumbnailContainer = styled.div`
   display: flex;
@@ -150,7 +150,7 @@ const ThumbnailContainer = styled.div`
   width: 80%;
   height: auto;
   margin-top: 10px;
-  border: 1px solid black; 
+  border: 1px solid black;
 `;
 
 const Thumbnail = styled.img`
@@ -158,7 +158,7 @@ const Thumbnail = styled.img`
   height: 100px;
   object-fit: cover;
   margin-right: 10px;
-  border: 1px solid black; 
+  border: 1px solid black;
 
 `;
 export const Nickname = styled.div`
@@ -167,14 +167,14 @@ export const Nickname = styled.div`
   width: 75%;
   height: 40px;
   border: 1px solid black;
-  margin: 10px 0 0 0;     
+  margin: 10px 0 0 0;
 `
 export const Email = styled.div`
   display: flex;
   align-items: center;
   width: 50%;
   height: 100%;
-  border: 1px solid black;  
+  border: 1px solid black;
   margin: 0 0 0 125px;
 `
 export const SubmitReview = styled.div`
@@ -183,8 +183,8 @@ export const SubmitReview = styled.div`
   justify-content: center;
   width: 75%;
   height: 6%;
-  border: 1px solid black;  
-  margin: 25px 0 0 0;  
+  border: 1px solid black;
+  margin: 25px 0 0 0;
 `
 export const RatingButton = styled.button`
   background-color: ${({ selected }) => (selected ? 'black' : 'transparent')};
@@ -212,7 +212,7 @@ export const CharactertisticButton = styled.button`
   margin-left: 5px;
 `
 
-// export const 
+// export const
 
 export const AddReview = ({reviewProduct, AddView, productMeta}) => {
 
@@ -283,7 +283,7 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
       }))
       console.log('characteristics: ',characteristics);
       };
-    
+
     const handleStars = (event, num) => {
       if(event) {
         if(num === 1) {
@@ -302,7 +302,7 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
 
         }
 
-      } 
+      }
     }
 
     const handlePhotoUpload = (e) => {
@@ -316,19 +316,19 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
         reader.readAsDataURL(files[0]);
       }
     };
-    
+
     const handleSubmit = (e) => {
       const chars = productMeta.characteristics
       const comfortID = productMeta.characteristics.Comfort.id
       const qualityID = productMeta.characteristics.Quality.id
-      
+
       if(chars.Length && chars.Fit) {
         const fitID = productMeta.characteristics.Fit.id
         const lengthID = productMeta.characteristics.Length.id
 
         var fitLength = {'product_id' : 40345, 'rating' : stars, 'summary' : summary,
-                    'body' : body, 'recommend': recommend, 'name' : nickname, 
-                    'email' : email, 'photos' : photos, 
+                    'body' : body, 'recommend': recommend, 'name' : nickname,
+                    'email' : email, 'photos' : photos,
                     'characteristics' : {[comfortID] : Comfort, [fitID]: Fit, [lengthID]: Length, [qualityID]: Quality}}
        console.log(fitLength)
        postReview(fitLength)
@@ -340,14 +340,14 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
           console.error('Error posting review:', error);
           // Handle the error
         });
-        
+
       } else {
 
         const sizeID = productMeta.characteristics.Size.id
         const widthID = productMeta.characteristics.Width.id
         var SizeWidth = {'product_id' : 40345, 'rating' : stars, 'summary' : summary,
-                    'body' : body, 'recommend': recommend, 'name' : nickname, 
-                    'email' : email, 'photos' : photos, 
+                    'body' : body, 'recommend': recommend, 'name' : nickname,
+                    'email' : email, 'photos' : photos,
                     'characteristics' : {[sizeID] : Size, [widthID]: Width, [comfortID]: Comfort, [qualityID]: Quality}}
       console.log(fitLength)
       postReview(SizeWidth)
@@ -360,10 +360,10 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
           // Handle the error
         });
       }
-      
+
     }
-    
-  
+
+
     return (
 
         <div>
@@ -376,17 +376,17 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                     <OverallRating>
                         Choose Star Rating!
                         {[1, 2, 3, 4, 5].map((num) => {
-                            return <RatingButton selected={num === stars} value = {num} required onClick = {(e) => 
+                            return <RatingButton selected={num === stars} value = {num} required onClick = {(e) =>
                                 handleStars(e, num)}>{num}</RatingButton>
                         })}
                         <RecommendProduct>
                             Do you recommend?
                                 <YesNoButton selected={recommend === 'Yes'} required onClick = {(e) => {handleYesNo(e, 'Yes')}}>Yes</YesNoButton>
-                                or 
+                                or
                                 <YesNoButton selected={recommend === 'No'} required onClick = {(e) => {handleYesNo(e, 'No')}}>No</YesNoButton>
                         </RecommendProduct>
                     </OverallRating>
-                    
+
                     <CharacteristicsDIV>
                         <h4>Characteristics: </h4>
                         {allCharacteristics.map((characteristic) => {
@@ -394,14 +394,14 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                                   {characteristic}
                                   <div>
                                       {[1, 2, 3, 4, 5].map((num) => {
-                                          return <CharactertisticButton 
+                                          return <CharactertisticButton
                                                     selected={characteristics[characteristic] === num}
-                                                    required value = {num} 
+                                                    required value = {num}
                                                     onClick = {() => handleCheckbox(characteristic, num)}>
                                                       {num}
                                                   </CharactertisticButton>
                                       })}
-                                      
+
                                   </div>
                                   </EachCharacteristics>
                         })}
@@ -412,7 +412,7 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                         <SummaryTextBox type = "text" onChange = {handleSummary} />
                     </ReviewSummary>
                     <ReviewBody>
-                        Enter Review: 
+                        Enter Review:
                         <FullTextBox type = "text" required onChange = {handleFullBody} />
                     </ReviewBody>
                     <UploadPhotos>
@@ -432,13 +432,13 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
                             <input type = "text" required onChange = {handleEmail} />
                         </Email>
                     </Nickname>
-                    
+
                     <SubmitReview>
                         <button onClick = {(e) => {
                           handleSubmit(e)
                         }}>submit</button>
                     </SubmitReview>
-                    
+
                 </AddDiv>
             </AddWindow>
         </div>

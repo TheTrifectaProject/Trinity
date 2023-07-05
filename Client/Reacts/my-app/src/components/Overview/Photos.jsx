@@ -1,6 +1,8 @@
 import react from 'react'
 import {useState} from 'react'
 import styled from "styled-components"
+// import Zoom from 'react-img-zoom'
+import ImageZoom from "react-image-zooom";
 import { UilAngleRight } from '@iconscout/react-unicons'
 import { UilAngleLeft } from '@iconscout/react-unicons'
 
@@ -58,9 +60,14 @@ const MainPhoto = styled.img`
 height: auto;
 width: 410px;
 box-shadow: 0 5px 5px 5px rgba(0, 0, 0, .2);
+&:hover {
+  transform: scale(1.5)
+}
 `
 
 const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex}) => {
+
+  // const photoUrl = photos[photoIndex].url
 
   const photoInc = () => {
     if (photoIndex === photos.length -1) {
@@ -103,6 +110,11 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
       </PhotoGallery>
       <MainDisplay>
         <UilAngleLeft onClick={photoDec}size='65'/>
+        {/* <ImageZoom
+                src= {photos[photoIndex].url}
+                alt="Zoom-images"
+                zoom="300"
+              /> */}
         <MainPhoto src={photos[photoIndex].url} />
         <UilAngleRight onClick={photoInc}size='65'/>
       </MainDisplay>
