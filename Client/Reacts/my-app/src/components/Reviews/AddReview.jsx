@@ -1,9 +1,9 @@
 
-
+//
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import {postReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
+import {fetchProduct, postReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
 
 
 export const AddWindow = styled.div`
@@ -49,7 +49,7 @@ export const HeaderDiv = styled.div`
   height: 75px;
   margin: 20px 0 0 45px;
   font-size: 44px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 `
 export const Title = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ export const Title = styled.div`
   height: 10%;
   margin: 0px 0 0 10px;
   font-size: 44px;
-  border: 1px solid black;  
+  /* border: 1px solid black;   */
 `
 export const OverallRating = styled.div`
   display: flex;
@@ -67,7 +67,8 @@ export const OverallRating = styled.div`
   width: 75%;
   height: 40px;
   border: 1px solid black;
-  margin: 25px 0 0 0; 
+  margin: px 0 0 0; 
+  
 `
 export const YesNo = styled.div`
   background-color: transparent;
@@ -99,8 +100,8 @@ export const EachCharacteristics = styled.div`
   flex-direction: row;
   height: 25px;
   width: 50%;
-  border: 1px solid black;
-  margin: 0 0 5px 0;
+  border-bottom: 1px solid black;
+  margin: 0 0 2px 0;
 `
 export const CheckboxContainer = styled.div`
   height: 100%;
@@ -145,12 +146,12 @@ export const UploadPhotos = styled.div`
 const ThumbnailContainer = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: row;
   width: 80%;
   height: auto;
   margin-top: 10px;
-  border: 1px solid black; 
+  /* border: 1px solid black;  */
 `;
 
 const Thumbnail = styled.img`
@@ -164,18 +165,18 @@ const Thumbnail = styled.img`
 export const Nickname = styled.div`
   display: flex;
   align-items: center;
-  width: 75%;
+  justify-content: space-between;
+  width: 50%;
   height: 40px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 10px 0 0 0;     
 `
 export const Email = styled.div`
   display: flex;
   align-items: center;
-  width: 50%;
+  width: auto;
   height: 100%;
-  border: 1px solid black;  
-  margin: 0 0 0 125px;
+  /* border: 1px solid black;   */
 `
 export const SubmitReview = styled.div`
   display: flex;
@@ -202,6 +203,7 @@ export const YesNoButton = styled.button`
   border-radius: 50px;
   margin-left: 10px;
   margin-right: 10px;
+  text-decoration: underline;
 `;
 
 export const CharactertisticButton = styled.button`
@@ -214,9 +216,9 @@ export const CharactertisticButton = styled.button`
 
 // export const 
 
-export const AddReview = ({reviewProduct, AddView, productMeta}) => {
+export const AddReview = ({productId, AddView, productMeta, header}) => {
 
-    const [header, setHeader] = useState("");
+    const [productName, setProductName] = useState("");
     const [stars, setStars] = useState("")
     const [recommend, setRecommend] = useState("")
     const [summary, setSummary] = useState('');
@@ -235,14 +237,6 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
     const [characteristics, setCharacteristics] = useState({});
 
     const allCharacteristics = ['Size', 'Width', 'Comfort', 'Quality', 'Length', 'Fit']
-
-    useEffect(() => {
-        createHeader();
-    })
-
-    const createHeader = (ProductName) => {
-        setHeader("Write your review about Scrub Daddy")
-    }
 
     const handleSummary = (e) => {
         e.preventDefault()
@@ -270,13 +264,14 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
 
     const handleYesNo = (e, YN) => {
       if(e && YN === 'Yes') {
-        setRecommend('Yes')
+        setRecommend(true)
       } else if (e && YN === 'No') {
-        setRecommend('No')
+        setRecommend(false)
       }
     }
 
     const handleCheckbox = (characteristic, number) => {
+
       setCharacteristics((prevState) => ({
         ...prevState,
         [characteristic]: number
@@ -317,6 +312,7 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
       }
     };
     
+
     const handleSubmit = (e) => {
       const chars = productMeta.characteristics
       const comfortID = productMeta.characteristics.Comfort.id
@@ -326,10 +322,11 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
         const fitID = productMeta.characteristics.Fit.id
         const lengthID = productMeta.characteristics.Length.id
 
-        var fitLength = {'product_id' : 40345, 'rating' : stars, 'summary' : summary,
+        var fitLength = {'product_id' : productId, 'rating' : stars, 'summary' : summary,
                     'body' : body, 'recommend': recommend, 'name' : nickname, 
                     'email' : email, 'photos' : photos, 
-                    'characteristics' : {[comfortID] : Comfort, [fitID]: Fit, [lengthID]: Length, [qualityID]: Quality}}
+                    'characteristics' : {[comfortID] : characteristics.Comfort, [fitID]: characteristics.Fit, 
+                      [lengthID]: characteristics.Length, [qualityID]: characteristics.Quality}}
        console.log(fitLength)
        postReview(fitLength)
         .then((data) => {
@@ -345,11 +342,12 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
 
         const sizeID = productMeta.characteristics.Size.id
         const widthID = productMeta.characteristics.Width.id
-        var SizeWidth = {'product_id' : 40345, 'rating' : stars, 'summary' : summary,
+        var SizeWidth = {'product_id' : productId, 'rating' : stars, 'summary' : summary,
                     'body' : body, 'recommend': recommend, 'name' : nickname, 
                     'email' : email, 'photos' : photos, 
-                    'characteristics' : {[sizeID] : Size, [widthID]: Width, [comfortID]: Comfort, [qualityID]: Quality}}
-      console.log(fitLength)
+                    'characteristics' : {[sizeID] : characteristics.Size, [widthID]: characteristics.Width, 
+                      [comfortID]: characteristics.Comfort, [qualityID]: characteristics.Quality}}
+      console.log(SizeWidth)
       postReview(SizeWidth)
         .then((data) => {
           console.log('Review posted successfully:', data);
@@ -368,79 +366,81 @@ export const AddReview = ({reviewProduct, AddView, productMeta}) => {
 
         <div>
             <AddWindow>
-                <AddDiv>
-                    <Title>
-                        <HeaderDiv>{header}</HeaderDiv>
-                        <CloseWindow onClick = {(e) => AddView(e)}>X</CloseWindow>
-                    </Title>
-                    <OverallRating>
-                        Choose Star Rating!
-                        {[1, 2, 3, 4, 5].map((num) => {
-                            return <RatingButton selected={num === stars} value = {num} required onClick = {(e) => 
-                                handleStars(e, num)}>{num}</RatingButton>
-                        })}
-                        <RecommendProduct>
-                            Do you recommend?
-                                <YesNoButton selected={recommend === 'Yes'} required onClick = {(e) => {handleYesNo(e, 'Yes')}}>Yes</YesNoButton>
-                                or 
-                                <YesNoButton selected={recommend === 'No'} required onClick = {(e) => {handleYesNo(e, 'No')}}>No</YesNoButton>
-                        </RecommendProduct>
-                    </OverallRating>
-                    
-                    <CharacteristicsDIV>
-                        <h4>Characteristics: </h4>
-                        {allCharacteristics.map((characteristic) => {
-                          return <EachCharacteristics>
-                                  {characteristic}
-                                  <div>
-                                      {[1, 2, 3, 4, 5].map((num) => {
-                                          return <CharactertisticButton 
-                                                    selected={characteristics[characteristic] === num}
-                                                    required value = {num} 
-                                                    onClick = {() => handleCheckbox(characteristic, num)}>
-                                                      {num}
-                                                  </CharactertisticButton>
-                                      })}
-                                      
-                                  </div>
-                                  </EachCharacteristics>
-                        })}
+              <AddDiv>
+                <Title>
+                    <HeaderDiv>{header}</HeaderDiv>
+                    <CloseWindow onClick = {(e) => AddView(e)}>X</CloseWindow>
+                </Title>
+                <OverallRating>
+                    Choose Star Rating!
+                    {[1, 2, 3, 4, 5].map((num) => {
+                        return <RatingButton selected={num === stars} value = {num} required onClick = {(e) => 
+                            handleStars(e, num)}>{num}</RatingButton>
+                    })}
+                    <RecommendProduct>
+                        Do you recommend?
+                            <YesNoButton selected={recommend === true} required onClick = {(e) => {handleYesNo(e, 'Yes')}}>Yes</YesNoButton>
+                            or 
+                            <YesNoButton selected={recommend === false} required onClick = {(e) => {handleYesNo(e, 'No')}}>No</YesNoButton>
+                    </RecommendProduct>
+                </OverallRating>
+                
+                <CharacteristicsDIV>
+                    <h4>Characteristics: </h4>
+                    {allCharacteristics.map((characteristic) => {
+                      return <EachCharacteristics>
+                              {characteristic}
+                              <div>
+                                  {[1, 2, 3, 4, 5].map((num) => {
+                                      return <CharactertisticButton 
+                                                selected={characteristics[characteristic] === num}
+                                                required value = {num} 
+                                                onClick = {() => handleCheckbox(characteristic, num)}>
+                                                  {num}
+                                              </CharactertisticButton>
+                                  })}
+                                  
+                              </div>
+                              </EachCharacteristics>
+                    })}
 
-                    </CharacteristicsDIV>
-                    <ReviewSummary>
-                        Enter Summary:
-                        <SummaryTextBox type = "text" onChange = {handleSummary} />
-                    </ReviewSummary>
-                    <ReviewBody>
-                        Enter Review: 
-                        <FullTextBox type = "text" required onChange = {handleFullBody} />
-                    </ReviewBody>
-                    <UploadPhotos>
-                        Insert Photos:
-                        <input type="file" multiple onChange={handlePhotoUpload} accept="image/*" />
-                    </UploadPhotos>
-                    <ThumbnailContainer>
-                      {selectedPhotos.map((photo, index) => (
-                        <Thumbnail key={index} src={photo}/>
-                      ))}
-                    </ThumbnailContainer>
-                    <Nickname>
-                        Nickname:
-                        <input type = "text" required onChange = {handleNickname} />
-                        <Email>
-                            Email:
-                            <input type = "text" required onChange = {handleEmail} />
-                        </Email>
-                    </Nickname>
-                    
-                    <SubmitReview>
-                        <button onClick = {(e) => {
-                          handleSubmit(e)
-                        }}>submit</button>
-                    </SubmitReview>
-                    
-                </AddDiv>
-            </AddWindow>
+                </CharacteristicsDIV>
+                <ReviewSummary>
+                    Enter Summary:
+                    <SummaryTextBox type = "text" onChange = {handleSummary} />
+                </ReviewSummary>
+                <ReviewBody>
+                    Enter Review: 
+                    <FullTextBox type = "text" required onChange = {handleFullBody} />
+                </ReviewBody>
+                <UploadPhotos>
+                    Insert Photos:
+                    <input type="file" multiple onChange={handlePhotoUpload} accept="image/*" />
+                </UploadPhotos>
+                <ThumbnailContainer>
+                  {selectedPhotos.map((photo, index) => (
+                    <Thumbnail key={index} src={photo}/>
+                  ))}
+                </ThumbnailContainer>
+                <Nickname>
+                    <div>
+                      Nickname:<input type = "text" required onChange = {handleNickname} />
+                    </div>
+      
+                    <Email>
+                        Email:
+                        <input type = "text" required onChange = {handleEmail} />
+                    </Email>
+                </Nickname>
+                
+                <SubmitReview>
+                    <button onClick = {(e) => {
+                      handleSubmit(e)
+                    }}>submit</button>
+                </SubmitReview>
+                
+            </AddDiv>
+          </AddWindow>
         </div>
     )
 }

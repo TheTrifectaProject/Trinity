@@ -131,7 +131,7 @@ function findCountStar(reviewProduct){
 
     return allPercents;
 }
-
+//
 export const HorizontalBarContainer = styled.div`
   width: 75%;
   height: 7px;
@@ -217,7 +217,7 @@ export const RBreakdown = ({reviewProduct, productMeta}) => {
             }
         })
         percentRec = (100 * totalRec) / totalReviews;
-        setRec(percentRec + '% of reviewers recommend');
+        setRec(Math.round(percentRec) + '% of reviewers recommend');
     }
 
     const AverageSizeFit = (productMeta) => {
