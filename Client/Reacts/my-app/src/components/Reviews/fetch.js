@@ -1,8 +1,10 @@
 
 //HOUSE ALL THE FETCH FUNCTIONS: 
+//
+
 import axios from 'axios';
 
-const token = `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`
+const token = `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`
 
 
 export const fetchMeta = (product_id) => {
@@ -39,7 +41,7 @@ export const fetchReviews = (page, count, sort, product_id) => {
 
 export const postReview = (reviewData) => {
   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-  const endpoint = '/reviews/';
+  const endpoint = '/reviews';
   const url = baseURL + endpoint;
   const headers = {
     Authorization: token,
@@ -84,3 +86,20 @@ export const report = (review_id) => {
       throw error;
     });
 }
+
+export const fetchProduct = (id) => {
+  const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
+  const endpoint = `/products/${id}`;
+  const url = baseURL + endpoint;
+  const headers = {
+    Authorization: token,
+  };
+
+  return axios.get(url, { headers })
+    .then((response) => response.data)
+    
+    .catch((error) => {
+      console.error(error.response.data);
+      throw error;
+    });
+};

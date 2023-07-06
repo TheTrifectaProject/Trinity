@@ -7,6 +7,7 @@ import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
 import Reviews from './components/Reviews/Reviews.jsx'
 import axios from 'axios'
+import { fetchProduct } from './components/Reviews/fetch.js'
 
 const AppDIV = styled.div`
 display:flex;
@@ -14,10 +15,7 @@ flex-direction: column;
 `
 
 const App = () => {
-  let token = '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';
-
-const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
@@ -42,7 +40,7 @@ const App = () => {
   };
   useEffect(() => {
 
-    fetchProducts();
+    fetchProducts()
 
   }, [currentProductId]);
 
@@ -50,16 +48,6 @@ const App = () => {
   if (!currentProductId) {
     return null;
   }
-
-=======
-  }, []);
-
-
-  if (!currentProductId) {
-    return null;
-  }
-
-
 
   return (
     <AppDIV>

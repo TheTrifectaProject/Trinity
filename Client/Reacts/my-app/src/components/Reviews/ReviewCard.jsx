@@ -3,7 +3,8 @@ import {useState, useEffect} from 'react'
 import styled from "styled-components"
 import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
 import {updateHelpful, report} from './fetch.js'
- 
+ //
+
 export const ReviewCard = styled.div`
   display:flex;
   flex-direction: column;
@@ -58,6 +59,7 @@ export const Thumbnail = styled.img`
   width: 100px;
   height: 100px;
   object-fit: cover;
+  margin-bottom: 10px;
   /* border: 1px solid black;  */
 `;
 export const Recommend = styled.div`
@@ -114,28 +116,16 @@ export const StarIcon = styled.span`
     content: '★'; 
   }
 `
-const EmptyStarIcon = styled.i`
-  /* Custom CSS styles for the empty star icon */
-  font-family: 'Font Awesome'; /* Assuming you have Font Awesome included in your project */
-  font-style: normal;
-  &:before {
-    content: '\f006'; /* Unicode character for an empty star in Font Awesome */
-  }
-`;
 
 function generateStarIcons(count) {
-    const empty = 5 - count;
     const stars = [];
     for (let i = 0; i < count; i++) {
       stars.push(<StarIcon key={i} />);
     }
-    for (let i = 0; i < empty; i++) {
-      stars.push(<EmptyStarIcon key={i} />)
-    }
     return stars;
   }
 
-export const Card = ({review}) => {
+export const Card = ({review, HandleReportUpdate, productId}) => {
     const [body, setBody] = useState();
     const [dateName, setDateName] = useState();
     const [help, setHelp] = useState();
@@ -198,6 +188,7 @@ export const Card = ({review}) => {
     const HandleReport = () => {
       report(id)
         .then((reviews) => {
+          HandleReportUpdate();
           console.log("Handle Yes Click", reviews);
         })
         .catch((error) => {

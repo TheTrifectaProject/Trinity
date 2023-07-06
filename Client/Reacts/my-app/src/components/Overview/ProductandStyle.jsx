@@ -5,7 +5,7 @@ import Stars from "./Stars.jsx"
 
 
 const NameStyleDIV = styled.div`
-display:flex:
+display:flex;
 flex-direction:column;
 overflow-y: scroll;
 height:89.9%;
@@ -88,7 +88,7 @@ const DropDownHeader = styled("div")`
 
 const DropDownListContainer = styled("div")`
 overflow-y: auto;
-height 150px;
+height: 150px;
 `
 
 const DropDownList = styled("ul")`
@@ -154,7 +154,7 @@ const FavoriteBtn = styled.button`
 const PriceDIV = styled.div`
   display:flex;
   flex-direction: row;
-  margin-top -22px;
+  margin-top: -22px;
 `
 const Strikeprice = styled.h5`
   text-decoration: line-through;
