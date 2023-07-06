@@ -46,7 +46,7 @@ export const Reviews = ({currentProductId}) => {
 
   //currentProductID find to see if there are number of Reviews inside that.
   useEffect(() => {
-    fetchReviews(1, 100, sortOption, currentProductId)
+    fetchReviews(1, 100, sortOption, 40346)
       .then((reviews) => {
         setReviewProduct(reviews)
         setNumberReviews(reviews.results.length);
@@ -57,7 +57,7 @@ export const Reviews = ({currentProductId}) => {
         console.error(error);
       });
 
-    fetchMeta(currentProductId)
+    fetchMeta(40346)
       .then((reviews) => {
         setProductMeta(reviews);
       })

@@ -156,13 +156,13 @@ export const Card = ({review}) => {
       setResponse(review.response)
       setId(review.review_id)
       setSummary(review.summary)
-    }, [help])
+    }, [review])
 
     const ReviewDate = () => {
         const date = new Date(review.date)
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const formattedDate = date.toLocaleDateString('en-US', options);
-        const dateName = review.reviewer_name + ', _' + formattedDate
+        const dateName = review.reviewer_name + ', ' + formattedDate
         return dateName;
     }
 
@@ -186,7 +186,7 @@ export const Card = ({review}) => {
       console.log("clicked yes!: ", id);
       updateHelpful(id)
         .then((reviews) => {
-          setHelp((prevHelp) => prevHelp + 1);
+          setHelp(help + 1);
           console.log("Handle Yes Click", reviews);
         })
         .catch((error) => {
