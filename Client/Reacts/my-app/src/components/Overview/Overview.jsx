@@ -55,7 +55,7 @@ const Overview = ({currentProductId}) => {
   const [photoIndex, setphotoIndex] = useState(0)
   const [ratingsData, setRatingsData] = useState('')
 
-  let token = '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';
+  let token = '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';
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
@@ -133,7 +133,7 @@ const Overview = ({currentProductId}) => {
 
   return (
 
-    <OverviewDIV>
+    <OverviewDIV data-testid='main-Container'>
       <TopDIV>
         <Photos photos={photos} mainPhoto={mainPhoto} updateMainPhoto={updateMainPhoto} setphotoIndex={setphotoIndex} photoIndex={photoIndex} />
         <ProductandStyle currentProduct={currentProduct} currentStyle={currentStyle} setcurrentStyle={setcurrentStyle} setPhotos={setPhotos} styles={styles} updateMainPhoto={updateMainPhoto} setphotoIndex={setphotoIndex} ratingsData ={ratingsData}/>
