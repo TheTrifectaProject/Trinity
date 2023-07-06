@@ -203,14 +203,14 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
 
 const sizesArr = [1,2,3,4];
 
-if (!styles || !ratingsData) {
-  return null;
-}
+// if (!styles || !ratingsData) {
+//   return null;
+// }
 
     return (
-      <NameStyleDIV>
+      <NameStyleDIV data-testid="NameStyleDIV">
         {!currentStyle.sale_price ?
-       <TopDIV>
+       <TopDIV data-testid="TopDIV">
 
           <Stars ratingsData={ratingsData} />
           <h5><em>{currentProduct.category}</em></h5>
@@ -233,7 +233,7 @@ if (!styles || !ratingsData) {
       </TopDIV>
       }
 
-      <MidDIV>
+      <MidDIV data-testid="MidDIV">
         <h2>Style Selector</h2>
         <CurrentStyle><em>{currentStyle.name.split(" ").join()}</em></CurrentStyle>
         <StylesDIV>
@@ -250,7 +250,7 @@ if (!styles || !ratingsData) {
           })}
         </StylesDIV>
       </MidDIV>
-      <BottomDIV>
+      <BottomDIV data-testid="BottomDIV">
         <DropDownContainer>
           <DropDownHeader onClick={toggleSizes}>Sizes</DropDownHeader>
           {SizesisOpen && (

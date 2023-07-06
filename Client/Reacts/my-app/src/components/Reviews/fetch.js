@@ -2,7 +2,7 @@
 //HOUSE ALL THE FETCH FUNCTIONS:
 import axios from 'axios';
 
-const token = `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`
+const token = `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`
 
 
 export const fetchMeta = (product_id) => {

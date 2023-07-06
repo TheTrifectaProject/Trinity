@@ -86,7 +86,7 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
     return null;
   }
   return (
-    <PhotosDIV>
+    <PhotosDIV data-testid="Photo-Container">
 
       <PhotoGallery>
         {photos.map((photo, i) => {

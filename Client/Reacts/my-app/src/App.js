@@ -15,7 +15,7 @@ flex-direction: column;
 
 
 const App = () => {
-  let token = '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';
+  let token = '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';
 
   const [currentProductId, setcurrentProductId] =useState('');
 
