@@ -31,7 +31,7 @@ const App = () => {
       .then((response) => {
         console.log('fetchProducts',
         response.data)
-        setcurrentProductId(response.data[2].id)
+        setcurrentProductId(response.data[0].id)
       })
       .catch((error) => {
         console.error(error.response.data);
