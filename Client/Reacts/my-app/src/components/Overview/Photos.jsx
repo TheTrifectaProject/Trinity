@@ -86,9 +86,9 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
     return null;
   }
   return (
-    <PhotosDIV>
+    <PhotosDIV data-testid="Photo-Container">
 
-      <PhotoGallery>
+      <PhotoGallery data-testid="Photo-Gallery">
         {photos.map((photo, i) => {
           if (photo !== mainPhoto) {
            return (
@@ -101,7 +101,7 @@ const Photos = ({photos, mainPhoto, updateMainPhoto, setphotoIndex, photoIndex})
           }
       })}
       </PhotoGallery>
-      <MainDisplay>
+      <MainDisplay data-testid="MainDisplay-Container">
         <UilAngleLeft onClick={photoDec}size='65'/>
         <MainPhoto src={photos[photoIndex].url} />
         <UilAngleRight onClick={photoInc}size='65'/>

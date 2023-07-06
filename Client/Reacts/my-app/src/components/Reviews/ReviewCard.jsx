@@ -1,7 +1,6 @@
-import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import {AddReview} from "./AddReview.jsx"
 import {updateHelpful, report} from './fetch.js'
  //
 
@@ -11,7 +10,7 @@ export const ReviewCard = styled.div`
   height: auto;
   width: 90%;
   border-bottom: 2px solid black;
-  margin: auto; 
+  margin: auto;
 `
 export const CardTop = styled.div`
   display:flex;
@@ -74,14 +73,14 @@ export const IsHelpful = styled.div`
   flex-direction: row;
   align-items: center;
   height: 25px;
-  width: 100%; 
+  width: 100%;
   /* border: 1px solid black; */
   margin: 7px;
 `
 export const ReportDiv = styled.div`
   display: flex;
   height: 90%;
-  width: 50%; 
+  width: 50%;
   /* border: 1px solid black; */
 `
 export const Yes = styled.button`
@@ -106,14 +105,14 @@ export const CardResponse = styled.div`
   width: 97%;
   /* border: 2px solid black; */
   background-color: lightgrey;
-  padding: 10px;  
+  padding: 10px;
   overflow: auto;
   word-wrap: break-word;
 `
 export const StarIcon = styled.span`
   margin: 1px;
   &:before {
-    content: '★'; 
+    content: '★';
   }
 `
 
@@ -172,7 +171,7 @@ export const Card = ({review, HandleReportUpdate, productId}) => {
     }
 
     const HandleYesClick = () => {
-      //some sort of axios put request 
+      //some sort of axios put request
       console.log("clicked yes!: ", id);
       updateHelpful(id)
         .then((reviews) => {
@@ -182,7 +181,7 @@ export const Card = ({review, HandleReportUpdate, productId}) => {
         .catch((error) => {
           console.error(error);
         });
-      
+
     }
 
     const HandleReport = () => {
@@ -206,7 +205,7 @@ export const Card = ({review, HandleReportUpdate, productId}) => {
                 <p>
                     {ReviewDate()}
                 </p>
-              </CardTop> 
+              </CardTop>
 
               <CardSummary>
                 <h5>{truncateSummary()}</h5>
@@ -219,13 +218,13 @@ export const Card = ({review, HandleReportUpdate, productId}) => {
               <Photos>
                 {photos.map((photo, index) => {
                   return <Thumbnail key={index} src={photo.url}/>
-                })} 
+                })}
               </Photos> : null}
-              {recommend ? 
+              {recommend ?
                   <Recommend>{rec()}</Recommend>
                     : null}
 
-              {response ? 
+              {response ?
                   <CardResponse>
                   Response:
                   <p>{response}</p>
@@ -233,14 +232,14 @@ export const Card = ({review, HandleReportUpdate, productId}) => {
               : null}
 
             <IsHelpful>
-      
+
                 Was this review helpful?
                 <Yes onClick={HandleYesClick}>Yes</Yes>
-                {help} | 
+                {help} |
                 <ReportDiv>
                   <ReportButton onClick = {HandleReport}>report</ReportButton>
                 </ReportDiv>
-              
+
             </IsHelpful>
 
           </ReviewCard>

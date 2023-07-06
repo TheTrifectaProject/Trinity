@@ -1,7 +1,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import Nav from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
+import Nav from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
@@ -20,8 +20,8 @@ const App = () => {
   const [currentProductId, setcurrentProductId] =useState('');
 
   const fetchProducts = () => {
-    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-    const endpoint = `/products`;
+    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+    const endpoint = '/products';
     const url = baseURL + endpoint;
     const headers = {
       Authorization: token,
