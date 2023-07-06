@@ -96,7 +96,7 @@ const DropDownList = styled("ul")`
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
   color: #1b3546;
-  font-size: 27px;
+  font-size: 12px;
   font-weight: 100;
   &:first-child {
     padding-top: 0.8em;
@@ -203,9 +203,9 @@ const ProductandStyle = ({currentProduct, currentStyle, setcurrentStyle, setPhot
 
 const sizesArr = [1,2,3,4];
 
-// if (!styles || !ratingsData) {
-//   return null;
-// }
+if (!styles || !ratingsData) {
+  return null;
+}
 
     return (
       <NameStyleDIV data-testid="NameStyleDIV">

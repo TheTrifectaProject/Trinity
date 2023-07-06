@@ -12,7 +12,7 @@ margin-top: 45px;
 height:750px;
 width: 75%;
 margin-bottom: 40px;
-margin-left: 75px;
+margin-left: 12%;
 margin-right: 75px;
 box-shadow: 0 20px 10px 10px rgba(0, 0, 0, 0.2);
 background-color: #79797913;

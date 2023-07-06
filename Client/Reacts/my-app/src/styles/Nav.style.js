@@ -48,6 +48,6 @@ border-radius: 35px;
 `;
 
 export const Logoimg = styled.img`
-width:150px;
-height:80px;
+width: 76px;
+height: 79px;
 `

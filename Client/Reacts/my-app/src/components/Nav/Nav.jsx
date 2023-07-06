@@ -2,7 +2,7 @@ import react from 'react'
 import styled from "styled-components"
 import {useState} from 'react'
 import {NavbarContainer, Logodiv, Searchdiv, SearchInput, SearchButton, Logoimg} from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/styles/Nav.style.js'
-import logo from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/nav-logo.png'
+import logo from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/shopping-bag-308552_1280.png'
 
 
 const Nav = () => {
