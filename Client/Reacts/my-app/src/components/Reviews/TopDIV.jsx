@@ -4,6 +4,8 @@ import {useState, useEffect, useRef} from 'react'
 import styled from "styled-components"
 import {Reviews} from "./Reviews.jsx"
 
+//
+
 
 export const TopDiv = styled.div`
   display: flex;
@@ -59,7 +61,6 @@ export const TopSection = ({reviewProduct, HandleSortOption, isOpen, toggleDropD
     //   }
 
     // }, [])
-
     return (
         <>
           <TopDiv>
