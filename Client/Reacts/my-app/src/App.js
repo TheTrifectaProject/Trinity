@@ -1,7 +1,9 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import Nav from '/Users/mexicanpepe/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
+
+import Nav from '/Users/mac/Desktop/FEC/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
+
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
