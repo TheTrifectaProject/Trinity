@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const token = process.env.REACT_APP_GITHUB_TOKEN;
 
-const fetchQuestions = (productId, page = 1, count = 5) => {
+const fetchQuestions = (productId, page = 1, count = 100) => {
   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
   const endpoint = '/qa/questions';
   const url = `${baseURL}${endpoint}`;

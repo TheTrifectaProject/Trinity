@@ -15,7 +15,7 @@ export const RBreakdownDiv = styled.div`
   width: 35%;
   height: 500px;
   /* border: 3px solid black; */
-  margin: 20px 0 0 20px;
+  margin: 20px 200px 0 20px;
   `
 export const RatingContainer = styled.div`
   display: flex;
