@@ -10,15 +10,15 @@ import {Reviews} from "./Reviews.jsx"
 export const TopDiv = styled.div`
   display: flex;
   width: 100%;
-  height: px;
   /* border: 3px solid black; */
+  margin-left: 100px;
 `
 export const NumberViews = styled.div`
   display:flex;
   align-items: center;
   width: auto;
   height: 35px;
-  margin: 10px 10px 0px 45px;
+  margin: 10px 10px 0px 108px;
 `
 export const SortReview = styled.div`
   display:flex;

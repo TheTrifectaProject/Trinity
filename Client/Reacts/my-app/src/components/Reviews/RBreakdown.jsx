@@ -12,10 +12,10 @@ export const StarIcon = styled.span`
 export const RBreakdownDiv = styled.div`
   display:flex;
   flex-direction: column;
-  width: 35%;
+  width: 12%;
   height: 500px;
   /* border: 3px solid black; */
-  margin: 20px 200px 0 20px;
+  margin: 20px 0px 0 20px;
   `
 export const RatingContainer = styled.div`
   display: flex;
