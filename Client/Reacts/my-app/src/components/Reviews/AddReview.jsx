@@ -3,7 +3,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import {fetchProduct, postReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
+import {fetchProduct, postReview} from "./fetch.js"
 
 
 export const AddWindow = styled.div`

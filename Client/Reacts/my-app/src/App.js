@@ -1,7 +1,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import Nav from '/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Nav/Nav.jsx'
+import Nav from './components/Nav/Nav.jsx'
 import Overview from './components/Overview/Overview.jsx'
 import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
@@ -15,7 +15,7 @@ flex-direction: column;
 `
 
 const App = () => {
-  let token = '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';
+  let token = process.env.REACT_APP_GITHUB_TOKEN
 
   const [currentProductId, setcurrentProductId] =useState('');
 

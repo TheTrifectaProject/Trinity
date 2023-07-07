@@ -5,6 +5,8 @@ import ProductandStyle from "./ProductandStyle.jsx"
 import Photos from "./Photos.jsx"
 import axios from 'axios';
 
+
+
 const OverviewDIV = styled.div`
 display:flex;
 flex-direction: column;
@@ -55,7 +57,7 @@ const Overview = ({currentProductId}) => {
   const [photoIndex, setphotoIndex] = useState(0)
   const [ratingsData, setRatingsData] = useState('')
 
-  let token = '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';
+  let token = process.env.REACT_APP_GITHUB_TOKEN
 
     const fetchProduct = (id) => {
       const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL

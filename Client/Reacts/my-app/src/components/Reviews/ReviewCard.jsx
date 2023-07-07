@@ -1,7 +1,7 @@
 import react from 'react'
 import {useState, useEffect} from 'react'
 import styled from "styled-components"
-import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import {AddReview} from "./AddReview.jsx"
 import {updateHelpful, report} from './fetch.js'
  //
 

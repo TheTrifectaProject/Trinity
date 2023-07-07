@@ -5,8 +5,8 @@ import {TopSection} from "./TopDIV.jsx"
 import {Buttons} from "./Buttons.jsx"
 import {RBreakdown} from "./RBreakdown.jsx"
 import {Card} from "./ReviewCard.jsx"
-import {fetchMeta, fetchReviews, fetchProduct} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
-import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import {fetchMeta, fetchReviews, fetchProduct} from "./fetch.js"
+import {AddReview} from "./AddReview.jsx"
 import { TopDiv } from './TopDIV.jsx'
 //
 

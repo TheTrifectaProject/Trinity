@@ -36,7 +36,7 @@ describe(Buttons, () => {
       <Buttons 
         HandleMoreButton={jest.fn()}
         AddView={addReviewsButtonClick}
-      />
+      />  
     )
   })
 });
