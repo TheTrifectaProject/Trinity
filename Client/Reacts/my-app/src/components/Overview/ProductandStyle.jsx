@@ -13,8 +13,6 @@ width: 45%;
 margin-top: 35px;
 margin-right: 5px;
 margin-right: 33px;
-/* padding-left: 20px; */
-/* box-shadow: 0 15px 10px 0 rgba(0, 0, 0, 0.3); */
 `
 const TopDIV = styled.div`
 display:contents;
@@ -98,7 +96,7 @@ const DropDownList = styled("ul")`
   border: 2px solid #e5e5e5;
   box-sizing: border-box;
   color: #1b3546;
-  font-size: 27px;
+  font-size: 12px;
   font-weight: 100;
   &:first-child {
     padding-top: 0.8em;
@@ -210,9 +208,9 @@ if (!styles || !ratingsData) {
 }
 
     return (
-      <NameStyleDIV>
+      <NameStyleDIV data-testid="NameStyleDIV">
         {!currentStyle.sale_price ?
-       <TopDIV>
+       <TopDIV data-testid="TopDIV">
 
           <Stars ratingsData={ratingsData} />
           <h5><em>{currentProduct.category}</em></h5>
@@ -235,7 +233,7 @@ if (!styles || !ratingsData) {
       </TopDIV>
       }
 
-      <MidDIV>
+      <MidDIV data-testid="MidDIV">
         <h2>Style Selector</h2>
         <CurrentStyle><em>{currentStyle.name.split(" ").join()}</em></CurrentStyle>
         <StylesDIV>
@@ -252,7 +250,7 @@ if (!styles || !ratingsData) {
           })}
         </StylesDIV>
       </MidDIV>
-      <BottomDIV>
+      <BottomDIV data-testid="BottomDIV">
         <DropDownContainer>
           <DropDownHeader onClick={toggleSizes}>Sizes</DropDownHeader>
           {SizesisOpen && (

@@ -1,14 +1,13 @@
-import react from 'react'
 import styled from "styled-components"
 import {useState, useEffect} from 'react'
 import {TopSection} from "./TopDIV.jsx"
 import {Buttons} from "./Buttons.jsx"
 import {RBreakdown} from "./RBreakdown.jsx"
 import {Card} from "./ReviewCard.jsx"
-import {fetchMeta, fetchReviews, fetchProduct} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/fetch.js"
-import {AddReview} from "/Users/andrewliu/FEC-Sprint/Client/Reacts/my-app/src/components/Reviews/AddReview.jsx"
+import {fetchMeta, fetchReviews, fetchProduct} from "./fetch.js"
+import {AddReview} from "./AddReview.jsx"
 import { TopDiv } from './TopDIV.jsx'
-//
+
 
 export const ReviewsDIV = styled.div`
   width: 100%;
@@ -20,7 +19,7 @@ export const ReviewsDIV = styled.div`
 export const MainDiv = styled.div`
   display:flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: flex-end;
   width: 100%;
   height: auto;
@@ -29,10 +28,10 @@ export const MainDiv = styled.div`
 export const ExpandedMainDiv = styled.div`
   display:flex;
   flex-direction: column;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-  height: auto;  
+  height: auto;
   /* border: 3px solid blue; */
 `
 export const Reviews = ({currentProductId}) => {
@@ -45,8 +44,8 @@ export const Reviews = ({currentProductId}) => {
   const [allReviews, setAllReviews] = useState(false);
   const [sortOption, setSortOption] = useState('relevant')
   const [add, setAdd] = useState(false)
- 
-  //currentProductID find to see if there are number of Reviews inside that. 
+
+  //currentProductID find to see if there are number of Reviews inside that.
   useEffect(() => {
     fetchReviews(1, 100, sortOption, currentProductId)
       .then((reviews) => {
@@ -58,7 +57,7 @@ export const Reviews = ({currentProductId}) => {
       .catch((error) => {
         console.error(error);
       });
-    
+
     fetchMeta(currentProductId)
       .then((reviews) => {
         setProductMeta(reviews);
@@ -84,7 +83,7 @@ export const Reviews = ({currentProductId}) => {
       setAllReviews(!allReviews);
     }
   }
-  
+
   const AddView = (e) => {
     e.preventDefault();
     setAdd(!add)
@@ -107,7 +106,7 @@ export const Reviews = ({currentProductId}) => {
         setReviewProduct(reviews)
         setNumberReviews(reviews.results.length)
       });
-      
+
   }
 
   if (reviewProduct && productMeta && allReviews) {
@@ -118,7 +117,7 @@ export const Reviews = ({currentProductId}) => {
 
           <ExpandedMainDiv>
 
-            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta}
              HandleSortOption={HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
              sortOption = {sortOption} numberReviews = {numberReviews}/>
 
@@ -126,12 +125,12 @@ export const Reviews = ({currentProductId}) => {
                 return <Card review={review} productId = {productId} HandleReportUpdate = {HandleReportUpdate}/>
             })}
 
-            <Buttons reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+            <Buttons reviewProduct={reviewProduct.results} productMeta = {productMeta}
               HandleMoreButton = {HandleMoreButton}
               AddView = {AddView}/>
 
           </ExpandedMainDiv>
-          {add ? (console.log("current product id: ", productId), 
+          {add ? (console.log("current product id: ", productId),
               <AddReview reviewProduct={reviewProduct.results} AddView = {AddView}
                productMeta = {productMeta} productId = {productId} header = {header}/>)
             : null }
@@ -146,21 +145,21 @@ export const Reviews = ({currentProductId}) => {
 
           <MainDiv>
 
-            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+            <TopSection reviewProduct={reviewProduct.results} productMeta = {productMeta}
             HandleSortOption = {HandleSortOption} isOpen = {isOpen} toggleDropDown = {toggleDropDown}
             sortOption = {sortOption} numberReviews = {numberReviews}/>
 
             <Card review={reviewProduct.results[0]} productId = {productId} HandleReportUpdate = {HandleReportUpdate}/>
             <Card review={reviewProduct.results[1]} productId = {productId} HandleReportUpdate = {HandleReportUpdate}/>
 
-            <Buttons reviewProduct={reviewProduct.results} productMeta = {productMeta} 
+            <Buttons reviewProduct={reviewProduct.results} productMeta = {productMeta}
               HandleMoreButton = {HandleMoreButton}
               AddView = {AddView}/>
 
           </MainDiv>
-          
-          {add ? (console.log("current product id: ", productId), 
-              <AddReview reviewProduct={reviewProduct.results} AddView = {AddView} 
+
+          {add ? (console.log("current product id: ", productId),
+              <AddReview reviewProduct={reviewProduct.results} AddView = {AddView}
               productMeta = {productMeta} productId = {productId} header = {header}/>)
             : null }
         </div>
@@ -175,4 +174,4 @@ export const Reviews = ({currentProductId}) => {
   }
 }
 
-export default Reviews; 
+export default Reviews;

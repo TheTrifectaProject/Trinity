@@ -1,5 +1,4 @@
-
-//HOUSE ALL THE FETCH FUNCTIONS: 
+//HOUSE ALL THE FETCH FUNCTIONS:
 //
 
 import axios from 'axios';
@@ -14,14 +13,14 @@ export const fetchMeta = (product_id) => {
     const headers = {
       Authorization: token,
     };
-  
+
     return axios.get(url, { headers })
       .then((response) => response.data)
       .catch((error) => {
         console.error(error.response.data);
         throw error;
       });
-}; 
+};
 
 export const fetchReviews = (page, count, sort, product_id) => {
   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
@@ -97,7 +96,7 @@ export const fetchProduct = (id) => {
 
   return axios.get(url, { headers })
     .then((response) => response.data)
-    
+
     .catch((error) => {
       console.error(error.response.data);
       throw error;
