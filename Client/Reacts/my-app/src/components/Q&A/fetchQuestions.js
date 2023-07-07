@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const token = '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';
+const token = process.env.REACT_APP_GITHUB_TOKEN;
 
 const fetchQuestions = (productId, page = 1, count = 5) => {
   const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';

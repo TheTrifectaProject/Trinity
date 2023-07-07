@@ -1,9 +1,8 @@
 //HOUSE ALL THE FETCH FUNCTIONS:
 //
-
 import axios from 'axios';
 
-const token = `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`
+const token = process.env.REACT_APP_GITHUB_TOKEN
 
 
 export const fetchMeta = (product_id) => {

@@ -65,7 +65,7 @@ export const Reviews = ({currentProductId}) => {
       .catch((error) => {
         console.error(error);
       });
-      fetchProduct(productId)
+    fetchProduct(currentProductId)
       .then((data) => {
         console.log("product: ", data.name);
         setHeader("Write your review about " + data.name);
