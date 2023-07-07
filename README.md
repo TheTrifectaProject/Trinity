@@ -52,3 +52,27 @@ Related Items & Comparison
 2. List Behavior
 3. Related Products List
 4. Your Outfit List
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Merging Process: 
+Pull down recent main to local main branch
+Switch to your branch and merge that main into your branch
+Then push your branch up to gh and create pull request
+pull from group github main branch to local machine
+
+git checkout main
+git fetch origin
+git reset --hard origin/main
+
+pull a branch that does not yet exist on your machine
+git fetch origin [branchName]:[branchName]
+
+create a new branch
+git checkout -b <branch_name>
+
+push the new branch to the group github.
+git push -u origin <branch_name>
+
+create a pull request to merge to "main" branch
+we do it on githu

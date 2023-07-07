@@ -20,8 +20,8 @@ const App = () => {
   const [currentProductId, setcurrentProductId] =useState('');
 
   const fetchProducts = () => {
-    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp'; // Replace with your API base URL
-    const endpoint = `/products`;
+    const baseURL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp';
+    const endpoint = '/products';
     const url = baseURL + endpoint;
     const headers = {
       Authorization: token,
@@ -31,7 +31,7 @@ const App = () => {
       .then((response) => {
         console.log('fetchProducts',
         response.data)
-        setcurrentProductId(response.data[2].id)
+        setcurrentProductId(response.data[3].id)
       })
       .catch((error) => {
         console.error(error.response.data);
