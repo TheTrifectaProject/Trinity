@@ -14,7 +14,9 @@ export const ReviewsDIV = styled.div`
   display:flex;
   flex-direction: column;
   height: auto;
-  /* border: 3px solid red; */
+  margin-left: 12%;
+  margin-right: 75px;
+  border: 3px solid red;
 `
 export const MainDiv = styled.div`
   display:flex;

@@ -9,6 +9,7 @@ const QuestionsDIV = styled.div`
   align-items: center;
   border: 1px solid black;
   padding: 20px;
+  
 `;
 
 const AnswerContent = styled.div`
@@ -117,12 +118,13 @@ const Questions = () => {
   const [reportedQuestions, setReportedQuestions] = useState(new Set());
   const [helpfulnessCount, setHelpfulnessCount] = useState(0);
   const [selectedAnswerIds, setSelectedAnswerIds] = useState([]);
+  const [helpfulCounts, setHelpfulCounts] = useState({});
 
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const questionsData = await fetchQuestions("43043");
+        const questionsData = await fetchQuestions("40348");
         console.log("Fetched Questions:", questionsData);
 
         const fetchedQuestions = await Promise.all(questionsData.results.map(async question => {
@@ -196,6 +198,12 @@ const Questions = () => {
       return newReported;
     });
   };
+  const handleHelpfulClick = (questionId) => {
+    setHelpfulCounts(prevCounts => ({
+      ...prevCounts,
+      [questionId]: (prevCounts[questionId] || 0) + 1
+    }));
+  };
 
   const handleAddQuestion = (event) => {
     event.preventDefault();
@@ -232,8 +240,11 @@ const Questions = () => {
             <QuestionHelpfulContainer>
               <QuestionText>Q: {question.question_body}</QuestionText>
               <div>
-                Helpful? Yes ({helpfulnessCount}) |
-                <span onClick={() => handleAnswerQuestion(question.question_id)} style={{ cursor: 'pointer', color: 'blue' }}> Answer</span>
+              Helpful? 
+  <span onClick={() => handleHelpfulClick(question.question_id)}>
+    Yes ({helpfulCounts[question.question_id] || 0})
+  </span>|
+                <span onClick={() => handleAnswerQuestion(question.question_id)} style={{ cursor: 'pointer', color: 'black' }}> Add Answer</span>
               </div>
             </QuestionHelpfulContainer>
 

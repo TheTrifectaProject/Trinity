@@ -7,7 +7,7 @@ import RelatedItems from './components/RelatedItems/RelatedItems.jsx'
 import Questions from './components/Q&A/Questions.jsx'
 import Reviews from './components/Reviews/Reviews.jsx'
 import axios from 'axios'
-import { fetchProduct } from './components/Reviews/fetch.js'
+// import { fetchProduct } from './components/Reviews/fetch.js'
 
 const AppDIV = styled.div`
 display:flex;
@@ -31,7 +31,7 @@ const App = () => {
       .then((response) => {
         console.log('fetchProducts',
         response.data)
-        setcurrentProductId(response.data[3].id)
+        setcurrentProductId(response.data[2].id)
       })
       .catch((error) => {
         console.error(error.response.data);
@@ -42,7 +42,7 @@ const App = () => {
 
     fetchProducts()
 
-  }, [currentProductId]);
+  }, []);
 
 
   if (!currentProductId) {
@@ -53,7 +53,6 @@ const App = () => {
     <AppDIV>
       <Nav />
       <Overview currentProductId={currentProductId}/>
-      <RelatedItems />
       <Questions currentProductId={currentProductId}/>
       <Reviews currentProductId={currentProductId}/>
     </AppDIV>

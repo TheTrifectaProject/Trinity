@@ -23,7 +23,7 @@ const MidDIV = styled.div`
 display:flex;
 flex-direction: column;
 margin-bottom: 110px;
-height: 210px;
+height: 170px;
 width: 100%;
 `
 const CurrentStyle = styled.h4`
