@@ -2,6 +2,9 @@
 
 We are creating a front end application that mimics an e-commerce site.
 
+
+To run the app cd into the my-app and from there run npm start to start up the app
+
 Team Members:
 
 1. Andrew Liu
