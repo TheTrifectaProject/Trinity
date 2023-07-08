@@ -4,11 +4,16 @@ A modern e-commerce web app optimized for user browsing experience.
 
 ![Screenshot 2023-07-08 at 3 04 34 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/08a59fee-e88e-4f11-9a12-3ffbaa01b622)
 
+
+
 ## Team Members:
 
 1. Andrew Liu
 2. Ty Hosn
 3. Joseph Camarena Castro
+
+#### Management 
+https://trello.com/b/L4G6C1cU/project-management-fec
 
 ## Tech Stack
 
