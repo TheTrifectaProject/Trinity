@@ -10,10 +10,7 @@ A modern e-commerce web app optimized for user browsing experience.
 2. Ty Hosn
 3. Joseph Camarena Castro
 
-The Components goes as follows:
-
-Business Requirements
-Product Detail Page
+## Tech Stack
 
 
 ## Overview
