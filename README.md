@@ -1,3 +1,6 @@
+# Trinity
+
+
 ## Tech Stack
 
 ![AWS](https://img.shields.io/badge/Amazon_AWS-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)
@@ -13,10 +16,9 @@
 ![Trello Management](https://img.shields.io/badge/Trello-0052CC?style=for-the-badge&logo=trello&logoColor=white)
 
 
-
-# Trinity
-
 A modern e-commerce web app optimized for user browsing experience.
+
+
 
 ![Screenshot 2023-07-08 at 3 04 34 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/08a59fee-e88e-4f11-9a12-3ffbaa01b622)
 
