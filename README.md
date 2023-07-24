@@ -1,4 +1,4 @@
-# The Trifecta Project 
+# Trinity
 
 A modern e-commerce web app optimized for user browsing experience.
 
