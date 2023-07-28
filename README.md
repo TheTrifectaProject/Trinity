@@ -19,30 +19,24 @@
 A modern e-commerce web app optimized for user browsing experience.
 
 
-
-![Screenshot 2023-07-08 at 3 04 34 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/08a59fee-e88e-4f11-9a12-3ffbaa01b622)
-
-
-
 ## Team Members:
 
-1. Andrew Liu
-2. Ty Hosn
-3. Joseph Camarena Castro
+1. Joseph Camarena Castro
+2. Andrew Liu Ty Hosn
+3. Ty Hosn
 
 #### Management 
 https://trello.com/b/L4G6C1cU/project-management-fec
 
 ## Overview
-![Screenshot 2023-07-08 at 3 05 23 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/8b2d1394-c3ff-4424-8cb5-d53f69514e27)
-![Screenshot 2023-07-08 at 3 06 34 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/f136b875-b78a-4e37-8540-55609c3baec3)
-![Screenshot 2023-07-08 at 3 07 24 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/ebf95212-4f0d-4b6f-880b-b3db469c9b7e)
 
 1. Product Information
 2. Style Selector
 3. add to Cart
 4. Image Gallery
-
+![Screenshot 2023-07-08 at 3 05 23 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/8b2d1394-c3ff-4424-8cb5-d53f69514e27)
+![Screenshot 2023-07-08 at 3 06 34 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/f136b875-b78a-4e37-8540-55609c3baec3)
+![Screenshot 2023-07-08 at 3 07 24 PM](https://github.com/TheTrifectaProject/FEC-Sprint/assets/104655832/ebf95212-4f0d-4b6f-880b-b3db469c9b7e)
 
 
 ## Ratings & Reviews
